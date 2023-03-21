@@ -1,0 +1,3 @@
+<?php
+
+$redis_url = "redis://h:pa39d047491d2aeb63b6924fb9128b22e9d4b710679a40061086ec6a0823f5715@ec2-52-1-179-111.compute-1.amazonaws.com:31589"; //2000-07-01T00:00:00+00:00
