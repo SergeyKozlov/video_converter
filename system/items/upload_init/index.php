@@ -25,7 +25,7 @@ $welcome = new NAD();
 //error_reporting(0); // Turn off error reporting
 error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 // TODO: add Redis cookie
-/* $user_id = $welcome->CookieToUserId();
+ $user_id = $welcome->CookieToUserId();
 //echo "user_id ";
 //print_r($user_id);
 //if (empty($user_id)) exit;
@@ -33,7 +33,7 @@ if (empty($user_id)) {
     $log->toFile(['service' => 'file_upload', 'type' => 'error', 'text' => 'upload_init error: HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
     header('Location: https://www.vide.me/web/enter/');
     exit;
-}*/
+}
 
 
 //$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);

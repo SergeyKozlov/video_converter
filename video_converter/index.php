@@ -17,7 +17,7 @@ use VideMe\Datacraft\model\PG_elaboration;
 //use VideMe\Datacraft\index;
 //use VideMe\Datacraft\model\RedisVideme;
 //use VideMe\Datacraft\RedisVideme;
-use Predis;
+//use Predis;
 //use Predis\Client;
 //use Dotenv;
 
@@ -29,12 +29,12 @@ $welcome = new NAD();
 //error_reporting(0); // Turn off error reporting
 error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 
-$dotenv = Dotenv\Dotenv::createImmutable('/tmp/');
+/*$dotenv = Dotenv\Dotenv::createImmutable('/tmp/');
 $dotenv->load();
 echo " _ENV['redis_url'] " . $_ENV['redis_url'];
 
 $host = $_ENV['redis_url'];
-$redis = new Predis\Client($_ENV['redis_url']); //16012023
+$redis = new Predis\Client($_ENV['redis_url']); //16012023*/
 
 // TODO: add Redis cookie
 /* $user_id = $welcome->CookieToUserId();
@@ -58,6 +58,7 @@ $memcachedSetKey['value'] = $welcome->trueRandom();
 //    'value' => $pgUserNew['user_email']]);
 $welcome->memcachedSetKey($memcachedSetKey);
 //if ($user_id == 'e185775fc4f5') { // aida
+setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/");
 
 $log->toFile(['service' => 'file_upload', 'type' => '', 'text' => 'upload_init : ' . $memcachedSetKey['value'] . ' HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
 
@@ -821,8 +822,6 @@ $html = <<<XYZ
         </div>
         <div class="col px-0 py-2 bg-white">
             <div class="my-2 px-2 py-2">
-
-                <?php
 
                 <button class="" id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image">
                     <div class="videme-nav-link-button">

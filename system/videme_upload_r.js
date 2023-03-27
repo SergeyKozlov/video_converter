@@ -59,7 +59,7 @@ var studio_upload = '';
                     $('#videme-upload-video-ticket').val('');*/
                     //$.getJSON('https://api.vide.me/system/items/upload_init/?nad=' + $.cookie('vide_nad'),
                    //== $.getJSON( studio_upload + '/system/items/upload_init/?nad=' + $.cookie('vide_nad'), // TODO: retun cookie
-                    $.getJSON( studio_upload + '/system/items/upload_init/?nad=',
+                    $.getJSON( studio_upload + '/system/items/upload_init/',
                         function (data) {
                             if (!$.isEmptyObject(data)) {
                                 console.log("videme-browse-media-button " + JSON.stringify(data));
