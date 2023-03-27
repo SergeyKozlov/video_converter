@@ -83,25 +83,21 @@ $(document).on('click', '#chart_next', function (event){
     $('#videme-chart-pop-states-place_' + item_data.item_id).empty();
 });
 
-/*************************************************************
- Upload Video or image
- **************************************************************/
-//$("#videme_upload_video_image").click(function (event) {
 $(document).on('click', '#videme_upload_video_image', function (event){
 
     event.preventDefault();
-    if ($.cookie('vide_nad')) {
+    //if ($.cookie('vide_nad')) {
         require(['videme_upload'], function(videme_upload) {
             videme_upload.uploadItint();
         });
-        $('#modal-videme_upload_video_image').modal('show');
+        //=== $('#modal-videme_upload_video_image').modal('show');
         //$('#upload_type').val('upload_image');
-        $('#nad').val($.cookie('vide_nad'));
+        //===$('#nad').val($.cookie('vide_nad'));
         //$('#access').val('public');
         //setUploadModal();
-    } else {
+    /*} else {
         //$('#modal-signin').modal('show');
         //$('#feedback').val(window.location.href);
         gotoLogin();
-    }
+    }*/
 });

@@ -209,7 +209,3 @@ function itemCardUpdate(itemCardUpdate) {
     $('#geo_chart_title').html(itemCardUpdate.title);
     $('#geo_chart_content').html(itemCardUpdate.content);
 }
-
-
-
-

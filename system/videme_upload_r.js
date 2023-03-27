@@ -2,7 +2,8 @@ define('videme_upload', function(videme_upload) {
     //require(['videme', 'jquery.fileupload'], function(videme, jquery_fileupload) {
     //??==require(['videme', 'jquery.fileupload'], function(videme) {
 //var upload_player;
-var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
+//var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
+var studio_upload = '';
 
 
         var videme_upload = {
@@ -38,12 +39,12 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                 this.noPostToggle();
                 $('#no_post').prop('checked', false);
                 /* ********************************************************/
-                var pgwBrowser = $.pgwBrowser();
+                /*var pgwBrowser = $.pgwBrowser();
                 if (pgwBrowser.browser.group === 'Explorer') {
                     //console.log('formUploadInit pgwBrowser.browser.group == Explorer *************************************************** ');
                     $('.videme_upload_video_file_all').addClass('hidden');
                     $('.videme_upload_video_file_ie').removeClass('hidden');
-                }
+                }*/
                 $('.videme_upload_alert').addClass('hidden');
 
                 $('.videme-upload-video-preview-collection-panel').addClass('hidden');
@@ -53,11 +54,12 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
 
             uploadItint: function () {
                 /* Get ticket **********************************************************************************/
-                if ($.cookie('vide_nad')) {
+               //== if ($.cookie('vide_nad')) {
                     /*$('#videme-upload-video-ticket_id').val('');
                     $('#videme-upload-video-ticket').val('');*/
                     //$.getJSON('https://api.vide.me/system/items/upload_init/?nad=' + $.cookie('vide_nad'),
-                    $.getJSON( studio_upload + '/system/items/upload_init/?nad=' + $.cookie('vide_nad'),
+                   //== $.getJSON( studio_upload + '/system/items/upload_init/?nad=' + $.cookie('vide_nad'), // TODO: retun cookie
+                    $.getJSON( studio_upload + '/system/items/upload_init/?nad=',
                         function (data) {
                             if (!$.isEmptyObject(data)) {
                                 console.log("videme-browse-media-button " + JSON.stringify(data));
@@ -88,7 +90,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                         .always(function () {
                             //console.log("uploadItint complete");
                         });
-                }
+                //==}
             },
 
             formUploadInputSet: function (e) {
@@ -390,7 +392,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
 
                     var ticket_id = $('#videme-upload-video-ticket_id').val();
                     console.log('cookieLastUploadSet ticket_id *************************************************** ', ticket_id);
-                    $.cookie("videme_last_upload", ticket_id, {expires: 1, path: '/', domain: 'vide.me', secure: true});
+                    //==$.cookie("videme_last_upload", ticket_id, {expires: 1, path: '/', domain: 'vide.me', secure: true}); // TODO: return cookie
                     this.lastUploadGetInfo(); // NOO dobble
                 }
             },
@@ -401,9 +403,9 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                 //$.removeCookie("videme_last_upload", { path: '/' });
                 //$.cookie('videme_last_upload', '', { expires: -1, path: '/'});
                 //$.cookie("videme_last_upload", null, { path: '/' });
-                $.cookie("videme_last_upload", null, {expires: -1, path: '/', domain: 'vide.me', secure: true});
+                //== $.cookie("videme_last_upload", null, {expires: -1, path: '/', domain: 'vide.me', secure: true}); // TODO: return cookie
 
-                console.log('cookieLastUploadRemove ***************************************** videme_last_upload ' + $.cookie("videme_last_upload"));
+                //==console.log('cookieLastUploadRemove ***************************************** videme_last_upload ' + $.cookie("videme_last_upload"));
 
                 $('.videme_nav_badge_last_upload').empty();
                 //$('.videme-browse-media-button').attr('disabled', false); // <--------------------------- 1 upload
@@ -414,7 +416,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
 
             lastUploadGetInfo: function () {
                 //console.log('lastUploadGetInfo *************************************************** ');
-                if ($.cookie('videme_last_upload')) {
+               //== if ($.cookie('videme_last_upload')) { // TODO: return cookie
                     //console.log('lastUploadGetInfo videme_last_upload *************************************************** ');
                     $('#timer').pietimer({
                             seconds: 5,
@@ -427,12 +429,12 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                         });
                     setInterval(function () {
                         $.fn.showMyTaskById({
-                            task_id: $.cookie("videme_last_upload"),
+                           // task_id: $.cookie("videme_last_upload"),
                             showcaseMyTask: "#videme_last_task"
                         });
                         $('#timer').pietimer('start');
                     }, 5000);
-                }
+                //}
             },
 
             albumIdUpdate: function () {
@@ -440,7 +442,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                 var arrayAccess = [];
                 arrayAccess.access = $('#album_id').val();
                 //console.log("albumIdUpdate arrayAccess -----> ", JSON.stringify(arrayAccess));
-                $('#videme-form-upload-select-assess').html(accessToIcon(arrayAccess));
+            //===    $('#videme-form-upload-select-assess').html(accessToIcon(arrayAccess));
             },
 
             noPostToggle: function () {
@@ -639,14 +641,14 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                                 $('.upload_public_submit').addClass('hidden');
                                 $('.videme-browse-media-button').removeClass('hidden').attr('disabled', false);
 
-                                var pgwBrowser = $.pgwBrowser();
+                                /*var pgwBrowser = $.pgwBrowser();
 
                                 if (pgwBrowser.browser.group === 'Explorer') {
                                     //console.log('formUploadInit pgwBrowser.browser.group == Explorer *************************************************** ');
                                     $('.videme_upload_video_file_ie').removeClass('hidden');
                                 } else {
                                     $('.videme_upload_video_file_all').removeClass('hidden');
-                                }
+                                }*/
                                 /* ********************************************************/
 
                                 data.abort();
@@ -722,7 +724,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
 
 
             /* ********************************************************/
-            var pgwBrowser = $.pgwBrowser();
+            //var pgwBrowser = $.pgwBrowser();
             //console.log('pgwBrowser.browser.group == *************************************************** ', pgwBrowser.os.group);
 
             /*if (pgwBrowser.browser.group == 'Explorer') {
@@ -749,7 +751,8 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                 videme_upload.formUploadInit();
                 $.ajax({
                     //url: 'https://api.vide.me/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
-                    url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
+                    //url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
+                    url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id, // TODO: return cookie
                     type: 'post',
                     //dataType: 'json',
                     //data: '',
@@ -772,8 +775,9 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                 document.title = 'Vide.me';
                 videme_upload.formUploadInit();
                 $.ajax({
-                    //url: 'https://api.vide.me/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
-                    url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
+                    //url: 'https://api.vide.me/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' +  ('vide_nad'),
+                    //url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id + '&nad=' + $.cookie('vide_nad'),
+                    url: studio_upload + '/system/items/upload_cancel/?ticket_id=' + ticket_id,  // TODO: return cookie
                     type: 'post',
                     //dataType: 'json',
                     //data: '',
@@ -798,7 +802,8 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                     type: 'POST',
                     //dataType: 'json',
                     timeout: 20000,
-                    data: $('form#upload_public').serialize() + '&album_id=' + $('#album_id').val() + '&nad=' + $.cookie('vide_nad'),
+                    //data: $('form#upload_public').serialize() + '&album_id=' + $('#album_id').val() + '&nad=' + $.cookie('vide_nad'),
+                    data: $('form#upload_public').serialize(), // TODO: return cookie
                     beforeSend: function () {
                         $.fn.processNotification();
                         //$('.videme-upload-form-spinner').removeClass('hidden');
@@ -831,7 +836,8 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
                     type: 'POST',
                     //dataType: 'json',
                     timeout: 20000,
-                    data: $('form#upload_public').serialize() + '&album_id=' + $('#album_id').val() + '&nad=' + $.cookie('vide_nad'),
+                    //data: $('form#upload_public').serialize() + '&album_id=' + $('#album_id').val() + '&nad=' + $.cookie('vide_nad'),
+                    data: $('form#upload_public').serialize(), // TODO: return cookie
                     beforeSend: function () {
                         $.fn.processNotification();
                         videme_upload.formUploadSpinnerShow();
@@ -892,7 +898,7 @@ var studio_upload = 'https://demo.sergeykozlov.ru/video_converter/';
             videme_upload.lastUploadGetInfo();
             //require(['jquery.hashtags', 'jquery.autosize'], function(hashtags, autosize) {
 
-              $('#item_edit_content').hashtags();
+            //===  $('#item_edit_content').hashtags();
         //});
         });
     //$('#item_edit_content').hashtags();

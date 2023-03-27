@@ -1,3 +1,67 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: sergey
+ * Date: 24.03.19
+ * Time: 1:34
+ */
+
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+
+//use VideMe\Datacraft\TM;
+use VideMe\Datacraft\nad;
+
+use VideMe\Datacraft\log\log;
+use VideMe\Datacraft\model\PG_elaboration;
+//use VideMe\Datacraft\model\PostgreSQL;
+//use VideMe\Datacraft\index;
+//use VideMe\Datacraft\model\RedisVideme;
+//use VideMe\Datacraft\RedisVideme;
+use Predis;
+//use Predis\Client;
+//use Dotenv;
+
+//$tm = new VideMe\Datacraft\TM();
+//$tm = new TM();
+$log = new log();
+$welcome = new NAD();
+
+//error_reporting(0); // Turn off error reporting
+error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
+
+$dotenv = Dotenv\Dotenv::createImmutable('/tmp/');
+$dotenv->load();
+echo " _ENV['redis_url'] " . $_ENV['redis_url'];
+
+$host = $_ENV['redis_url'];
+$redis = new Predis\Client($_ENV['redis_url']); //16012023
+
+// TODO: add Redis cookie
+/* $user_id = $welcome->CookieToUserId();
+//echo "user_id ";
+//print_r($user_id);
+//if (empty($user_id)) exit;
+if (empty($user_id)) {
+    $log->toFile(['service' => 'file_upload', 'type' => 'error', 'text' => 'upload_init error: HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
+    header('Location: https://www.vide.me/web/enter/');
+    exit;
+}*/
+
+
+//$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);
+$memcachedSetKey['key'] = $welcome->trueRandom();
+$memcachedSetKey['value'] = $welcome->trueRandom();
+//echo "\r\n<hr>pgUserNew _SERVER['HTTP_X_FORWARDED_FOR'] 1<br>";
+//print_r($_SERVER['HTTP_X_FORWARDED_FOR']);
+//echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";
+//print_r(['key' => $pgUserNew['userinvite'],
+//    'value' => $pgUserNew['user_email']]);
+$welcome->memcachedSetKey($memcachedSetKey);
+//if ($user_id == 'e185775fc4f5') { // aida
+
+$log->toFile(['service' => 'file_upload', 'type' => '', 'text' => 'upload_init : ' . $memcachedSetKey['value'] . ' HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
+
+$html = <<<XYZ
 <!DOCTYPE html>
 <html lang="en"
       prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# video: http://ogp.me/ns/video#  article: http://ogp.me/ns/article#">
@@ -163,7 +227,7 @@
     <link type="text/css" href="https://vjs.zencdn.net/7.7.5/video-js.min.css" rel="stylesheet">
     <link type="text/css" href="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.css" rel="stylesheet">
     <link type="text/css" href="https://api.vide.me/system/videme.css" rel="stylesheet">
-    <script type="text/javascript" src="https://api.vide.me/system/require.js"></script>
+    <script type="text/javascript" src="/system/require.js"></script>
     <!--<script type="text/javascript" src="https://api.vide.me/system/require_vide.js"></script>-->
     <script type="text/javascript" src="/system/geo_chart_require_vide.js"></script>
     <link type="text/css" href="https://api.vide.me/system/jquery-comments.css" rel="stylesheet">
@@ -758,7 +822,9 @@
         <div class="col px-0 py-2 bg-white">
             <div class="my-2 px-2 py-2">
 
-                <button class="" id="videme_upload_video_image" href="">
+                <?php
+
+                <button class="" id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image">
                     <div class="videme-nav-link-button">
                         <i class="fa fa-cloud-upload fa-lg" style="color: #ce0040;"></i>
                     </div>
@@ -771,12 +837,6 @@
                     <div class="row">
                         <p class="videme-tile">
 
-                            <button type="button" class="btn btn-success hidden" id="chart_next">
-                        <div class="geo_chart_progress">Next</button>
-                            <button type="button" class="btn btn-primary hidden" id="chart_run">
-                                <div class="geo_chart_progress float-start me-2"></div>
-                                Run
-                            </button>
 
                             <!--<div class="videme-media-info"></div>-->
                             <div class="d-flex text-muted pt-3">
@@ -875,5 +935,6 @@
     </div>
 </div>
 </body>
-<body></body>
 </html>
+XYZ;
+echo $html;
