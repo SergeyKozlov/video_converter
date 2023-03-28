@@ -1276,14 +1276,14 @@ class UploadHandler
             //"value" => "zzz"])) {
             //header("Status: 200 Ok");
             header("HTTP/1.0 404 Not Found");
-            $log->setEvent([
+            /*$log->setEvent([
                 "type" => "IDS",
                 "message" => "forgery",
                 "val" => $ticketid,
                 "file" => $_SERVER["PHP_SELF"],
                 "class" => __CLASS__,
                 "funct" => __FUNCTION__
-            ]);
+            ]);*/
             exit;
         }
 

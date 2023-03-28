@@ -1,7 +1,18 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/model/FfmpegConv.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+
+//use VideMe\Datacraft\TM;
+use VideMe\Datacraft\nad;
+
+//use VideMe\Datacraft\log\log;
+use VideMe\Datacraft\model\PG_elaboration;
+//use VideMe\Datacraft\model\PostgreSQL;
+use VideMe\Ffmpegconversion\FfmpegConv;
+use VideMe\Ffmpegconversion\LogConversion;
+
+//include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
+//include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/model/FfmpegConv.php');
 
 //error_reporting(0); // Turn off error reporting
 //error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
@@ -9,7 +20,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/model/FfmpegConv.php');
 //exit;
 
 $welcome = new NAD();
-$log = new log();
+$log = new LogConversion();
 $ffmpeg = new FfmpegConv();
 //echo $welcome->pgItemCountAdder(['count_item_id' => $_REQUEST['item']]);
 // https://studio7.vide.me/system/items/get_image/?item=1d3534a578e1.mp4&from_seconds=4

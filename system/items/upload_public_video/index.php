@@ -6,17 +6,30 @@
  * Time: 12:05
  */
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
+//include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
 
 error_reporting(0); // Turn off error reporting
 //error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 
 //print_r($_POST['ticket_id']);
 //exit;
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
+//use VideMe\Datacraft\TM;
+use VideMe\Datacraft\nad;
+
+//use VideMe\Datacraft\log\log;
+use VideMe\Ffmpegconversion\LogConversion;
+use VideMe\Ffmpegconversion\NADFFMpeg;
+
+
+//$tm = new VideMe\Datacraft\TM();
+//$tm = new TM();
+//$log = new log();
+$log = new LogConversion();
 $welcome = new NAD();
-$log = new log();
-$article = new Article();
+//$log = new log();
+$article = new NADFFMpeg();
 
 
 $retVal = null;

@@ -21,5 +21,15 @@
 //print_r($_POST['ticket_id']);
 //exit;
 
-require('UploadHandler.php');
+//require('UploadHandler.php');
+//$upload_handler = new UploadHandler();
+
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+
+//use VideMe\Datacraft\TM;
+//use VideMe\Datacraft\nad;
+use VideMe\Ffmpegconversion\UploadHandler;
+
+//use VideMe\Datacraft\log\log;
+
 $upload_handler = new UploadHandler();

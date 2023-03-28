@@ -388,6 +388,120 @@ console.log("geo_chart_jq.js");
         }
     };
 
+    /***************************************************************************
+     Функции Нотификации
+     ***************************************************************************/
+    $.fn.processNotification = function (options) {
+        //console.log("$.fn.processNotification -----> ok");
+        /*processNotificationSettings = $.extend({
+            processNotification: "#process_notification",
+            videmeProgress: ".videme-progress",
+            do: "#do"
+        }, options);
+        if ($(this).length) {
+            //console.log("$.fn.processNotification $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.processNotification $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(processNotificationSettings.processNotification);
+        }
+        //console.log("$.fn.processNotification tempObject -----> " + tempObject.length);
+        $(processNotificationSettings.videmeProgress).html(VidemeProgress);
+        $(processNotificationSettings.do).attr("disabled", true);
+        tempObject.append();
+        if (!tempObject.is('.in')) {
+            tempObject.addClass('in');
+            setTimeout(function () {
+                tempObject.removeClass('in');
+            }, 2200);
+        }*/
+        $('.videme-nav-spinner').removeClass('hidden');
+    };
+
+    $.fn.successNotification = function (options) {
+        //console.log("$.fn.successNotification -----> ok");
+        /*successNotificationSettings = $.extend({
+            successNotification: "#success_notification",
+            videmeProgress: ".videme-progress",
+            do: "#do"
+        }, options);
+        //console.log("$.fn.successNotification -----> successNotificationSettings: " + JSON.stringify(successNotificationSettings));
+        if ($(this).length) {
+            //console.log("$.fn.successNotification $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.successNotification $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(successNotificationSettings.successNotification);
+        }
+        //console.log("$.fn.successNotification tempObject -----> " + tempObject.length);
+        //console.log("$.fn.successNotification successNotificationSettings.msg -----> " + successNotificationSettings.msg);
+        $(successNotificationSettings.videmeProgress).empty();
+        $(successNotificationSettings.do).attr("disabled", false);
+        $.fn.lastNotification({
+            msg: successNotificationSettings.msg
+        });
+        //tempObject.append(successNotificationSettings.msg + "<br>");
+        tempObject.html(successNotificationSettings.msg + "<br>");
+        if (!tempObject.is('.in')) {
+            tempObject.addClass('in');
+            setTimeout(function () {
+                tempObject.removeClass('in');
+            }, 3200);
+        }*/
+        $('.videme-nav-spinner').addClass('hidden');
+        $('#videme-toast-success').toast('show');
+
+    };
+
+    $.fn.errorNotification = function (options) {
+        //console.log("$.fn.errorNotification -----> ok");
+        /*errorNotificationSettings = $.extend({
+            successNotification: "#error_notification",
+            videmeProgress: ".videme-progress",
+            do: "#do"
+        }, options);
+        if ($(this).length) {
+            //console.log("$.fn.errorNotification $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.errorNotification $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(errorNotificationSettings.successNotification);
+        }
+        //console.log("$.fn.errorNotification tempObject -----> " + tempObject.length);
+        $(errorNotificationSettings.videmeProgress).empty();
+        $(errorNotificationSettings.do).attr("disabled", false);
+        /!*        $.fn.lastNotification({
+         msg: errorNotificationSettings.msg
+         });*!/
+        $.fn.lastNotification({
+            msg: "<div class='alert alert-error span3'>Failed from timeout. Please try again later. " + JSON.stringify(errorNotificationSettings.msg) + " <span id='timer'></span> sec.</div><script type='text/javascript'>setTimeout('window.location.reload()', 6000); var t=5; function refr_time(){ if (t>1) { t--;  document.getElementById('timer').innerHTML=t; document.getElementById('timer').style.color = '#FF0000'; } else { document.getElementById('timer').style.color = '#FFA122'; } } var tm=setInterval('refr_time();' ,1000); </script>"
+        });
+        tempObject.append(JSON.stringify(errorNotificationSettings.msg) + "<br>");
+        if (!tempObject.is('.in')) {
+            tempObject.addClass('in');
+            setTimeout(function () {
+                tempObject.removeClass('in');
+            }, 3200);
+        }*/
+        $('.videme-nav-spinner').addClass('hidden');
+
+    };
+
+    $.fn.lastNotification = function (options) {
+        //console.log("$.fn.lastNotification -----> ok");
+        lastNotificationSettings = $.extend({
+            lastNotification: "#videme-result"
+        }, options);
+        if ($(this).length) {
+            //console.log("$.fn.errorNotification $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.errorNotification $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(lastNotificationSettings.lastNotification);
+        }
+        //console.log("$.fn.errorNotification tempObject -----> " + tempObject.length);
+        tempObject.html(lastNotificationSettings.msg);
+    };
 
 }
 (jQuery));

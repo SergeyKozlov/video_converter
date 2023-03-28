@@ -11,7 +11,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 //use VideMe\Datacraft\TM;
 use VideMe\Datacraft\nad;
 
-use VideMe\Datacraft\log\log;
+//use VideMe\Datacraft\log\log;
+use VideMe\Ffmpegconversion\LogConversion;
 use VideMe\Datacraft\model\PG_elaboration;
 //use VideMe\Datacraft\model\PostgreSQL;
 //use VideMe\Datacraft\index;
@@ -19,7 +20,8 @@ use VideMe\Datacraft\model\PG_elaboration;
 
 //$tm = new VideMe\Datacraft\TM();
 //$tm = new TM();
-$log = new log();
+//$log = new log();
+$log = new LogConversion();
 $welcome = new NAD();
 
 //error_reporting(0); // Turn off error reporting
