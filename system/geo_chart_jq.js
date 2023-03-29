@@ -503,6 +503,116 @@ console.log("geo_chart_jq.js");
         tempObject.html(lastNotificationSettings.msg);
     };
 
+    var itemsData = true;
+
+    function emptyItemsData(salutation, tempObject) {
+        $('.videme_tile_loading').addClass('hidden');
+        itemsData = false;
+    }
+
+    function emptyItemsDataTrue(salutation, tempObject) {
+        $('.videme_tile_loading').addClass('hidden');
+    }
+
+    Thing.prototype.doGetJSONTileV3 = function (callback, url, id_list_group, classM, offset, tempObject) { // 26072022
+        // Call our callback, but using our own instance as the context
+        //callback.call(this, salutation);
+        $('.videme_tile_loading').removeClass('hidden');
+        var self = $(this); // using self to store $(this)
+        if (itemsData !== false) {
+            $.getJSON(url,
+                function (data) {
+                    //console.log("Thing.prototype.doGetJSONTileV3 data -----> url " + url + ' data ' + JSON.stringify(data));
+                    //console.log("postsOfSpringVideoOnlyMultiple data -----> " + JSON.stringify(data));
+                    //var response_time = Math.round(performance.now() - start_time);
+                    //$('#result-response').append('<p><small>' + data.length + ' messages. API response time: ' + response_time + ' milliseconds</small></p>');
+                    if (!$.isEmptyObject(data)) {
+                        //tempObject.empty();
+                        //console.log("Thing.prototype.doGetJSONTileV3 data -----> url " + url + ' data ' + JSON.stringify(data));
+                        //tempObject.html(showTileMultiple(parseDataArrayToObject(data), tempObject, "shownext"));
+                        //===showTileMultiple(parseDataArrayToObject(data), tempObject, "shownext");
+                        //showTileV3(parseDataArrayToObject(data), tempObject, classM, offset);
+                        showTileTestV4(parseDataArrayToObject(data), tempObject, classM, offset);
+                        //$.fn.showcaseVideoTextButton(paddingButtonMySpring(data[0]));
+                    } else {
+                        console.log("$.fn.doGetJSONTileV3 data -----> no");
+                        //tempObject.html("No results");
+                        //$('#' + id_list_group).html("No results");
+                        //callback();
+                        //callback.call(this, url);
+                        callback.call(self, url, tempObject);
+                    }
+                })
+                .done(function (data) {
+                    //$('.videme-scroll-progress').empty();
+                    $('.videme_tile_loading').addClass('hidden');
+                })
+                .fail(function (data) {
+                    tempObject.html(showError(data));
+                    //callback.call(self, url, id_list_group);
+                    //==Xcallback.call(self, url, tempObject);
+                })
+                .always(function () {
+                });
+        } else {
+            $('.videme_tile_loading').addClass('hidden');
+        }
+    }
+    $.fn.itemsMyVideosScrollV3 = function (options) { // 25072022
+        console.log("$.fn.itemsMyVideosScrollV3 -----> ok");
+        itemsMyVideosScrollV3Settings = $.extend({
+            limit: 16,
+            showcaseVideo: "#videme-tile-v3"
+        }, options);
+        if ($(this).length) {
+            //console.log("$.fn.fileInbox $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.fileInbox $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(itemsMyVideosScrollV3Settings.showcaseVideo);
+        }
+        console.log("$.fn.itemsMyVideosScrollV3 tempObject -----> " + tempObject.length);
+        //tempObject.html(VidemeProgress);
+        var li = 1;
+        var win = $(window);
+        var getItemOpt = [];
+        var offset = 0;
+        //var limit = 4;
+        var limit = itemsMyVideosScrollV3Settings.limit;
+        //var itemsData = true;
+        var id_list_group = 'list-group_' + Math.floor(Math.random() * 100);
+        //tempObject.html("<ul class='list-group' id='" + id_list_group + "'></ul>");
+        //tempObject.append("<ul class='list-group' id='" + id_list_group + "'></ul><i class=\"videme_tile_loading fa fa-circle-o-notch fa-spin hidden\"></i>");
+
+        videmeUI.doGetJSONTileV3(emptyItemsData,
+            "/v2/items/my/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
+            id_list_group,
+            //'videme-v3-my-item-url',
+            'showmulti',
+            offset,
+            tempObject);
+        offset = offset + limit;
+
+        /*win.scroll(function () {
+            onScroll();
+        });
+        $(document.body).on('touchmove', onScroll()); // for mobile
+        function onScroll(){
+            if( $(window).scrollTop() + window.innerHeight >= document.body.scrollHeight ) {
+                console.log("$.fn.itemsMyVideosScroll onScroll");
+                eventScroll(); // TODO: recreate
+                $('.videme-scroll-progress').html(VidemeProgress);
+                videmeUI.doGetJSONTileV3(emptyConnectData,
+                    "https://api.vide.me/v2/items/my/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
+                    id_list_group,
+                    //'videme-v3-my-item-url',
+                    'showmulti',
+                    offset,
+                    tempObject);
+                offset = offset + limit;
+            }
+        }*/
+    };
 }
 (jQuery));
 

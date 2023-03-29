@@ -209,3 +209,11 @@ function itemCardUpdate(itemCardUpdate) {
     $('#geo_chart_title').html(itemCardUpdate.title);
     $('#geo_chart_content').html(itemCardUpdate.content);
 }
+
+var videmeUI = new Thing('Demo');
+
+function Thing(name) {
+    //console.log('Thing this ' + this);
+    this.name = name;
+    //console.log('Thing this.name333 ' + this.name333);
+}

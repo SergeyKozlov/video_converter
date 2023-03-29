@@ -823,17 +823,19 @@ $html = <<<XYZ
         <div class="col px-0 py-2 bg-white">
             <div class="my-2 px-2 py-2">
 
-                <button class="" id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image">
+                <button id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image" class="btn btn-primary">
                     <div class="videme-nav-link-button">
-                        <i class="fa fa-cloud-upload fa-lg" style="color: #ce0040;"></i>
+                        <i class="fa fa-cloud-upload fa-lg" style="/*! color: #f7ff00; */"></i>
                     </div>
-                    <div class="d-none d-sm-block d-md-none">Upload</div>
+                    Upload video file
                 </button>
-
 
                 <div class="videme-v3-tile-title">Chart</div>
                 <div class="container-fluid">
                     <div class="row">
+                    
+                    <div class="videme-tile-v3"></div>
+                    
                         <p class="videme-tile">
 
 
@@ -855,6 +857,9 @@ $html = <<<XYZ
                 <script type="text/javascript">
                     require(['jquery', 'geo_chart_jq'], function ($) {
                         $(document).ready(function () {
+                        
+                        $('#videme-tile-v3').itemsMyVideosScrollV3({});
+                        
                             var item_id = getParameterByName('item');
                             //if (!item_id) item_id = getNextItem();
                             if (!item_id) getNextItem();
