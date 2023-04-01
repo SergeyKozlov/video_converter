@@ -202,6 +202,94 @@ console.log("geo_chart_jq.js");
         return match ? match[1] : null;
     }
 
+    $.fn.showMyTaskActiveOnly = function (options) { // 26072022 // TODO: remove
+        showMyTaskActiveOnlySettings = $.extend({
+            limit: 6,
+            showcaseMyTask: "#videme-my-task"
+        }, options);
+        if ($(this).length) {
+            //console.log("$.fn.showMyTask $(this) -----> yes " + $(this).length);
+            var tempObject = $(this);
+        } else {
+            //console.log("$.fn.showMyTask $(this) -----> nooo! " + $(this).length);
+            var tempObject = $(showMyTaskActiveOnlySettings.showcaseMyTask);
+        }
+        if ($.cookie('videme_last_upload')) {
+
+            $.getJSON("https://api.vide.me/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
+                function (data) {
+                    //console.log("$.fn.showMyTask -----> typeof " + typeof data);
+                    if (data) {
+                        /*var htmlResult = [];
+                        var rowClass;
+                        $.each(data, function (key, value) {
+                            //console.log("showMyTask value.value.type -----> " + JSON.stringify(value.value.type));
+                            //console.log("showMyTask value.value.status -----> " + JSON.stringify(value.value.status));
+                            //switch (value.value.type) {
+                            switch (value.task_status) {
+                                case "awaiting":
+                                    rowClass = "active";
+                                    break;
+                                case "success":
+                                    rowClass = "success";
+                                    break;
+                                case "error":
+                                    rowClass = "danger";
+                                    break;
+                                default:
+                                    rowClass = "";
+                            }
+                            htmlResult.push("\
+                        <tr class=\"" + rowClass + "\">\
+                            <td>" + value['created_at'] + "</td>\
+                            <td>" + value['task_status'] + "</td>\
+                            <!--<td>" + value['file_size_start'] + "</td>\
+                            <td>" + value['file_size_done'] + "</td>\
+                            <td>" + value['file'] + "</td>-->\
+                            <td>" + value['title'] + "</td>\
+                            <td>" + value['content'] + "</td>\
+                            <td>" + sec2str(value['video_duration']) + "</td>\
+                        </tr>")
+                        });*/
+                        //console.log("showMyTask value -----> html" + "<table>" + htmlResult.join("") + "</table>");
+                        //console.log('showMyTask data.0 --->', JSON.stringify(data[0]));
+
+                        //showLastTask(data[0]);
+                        var db = (
+                            showTileTasksActiveOnly(parseMyTaskForDoorbellSign(data))
+                        );
+                        /*tempObject.html("<table class=\"table\" >\
+                                    <tr class=\"\">\
+                            <td>created_at</td>\
+                            <td>status</td>\
+                            <!--<td>fileSizeStart</td>\
+                            <td>fileSizeDone</td>\
+                            <td>file</td>-->\
+                            <td>subject</td>\
+                            <td>message</td>\
+                            <td>videoDuration</td>\
+                        </tr>" + htmlResult.join("") + "</table> " +
+                            db);*/
+
+                        tempObject.html(db);
+
+                        //});
+                    } else {
+                        //console.log("$.fn.showMyTask data -----> no");
+                        tempObject.html("");
+                    }
+                })
+                .done(function (data) {
+                })
+                .fail(function (data) {
+                    tempObject.html(showError(data));
+                })
+                .always(function () {
+                });
+        } else {
+            //console.log("$.fn.showMyTaskActiveOnly no cookie -----> ");
+        }
+    };
 
     $.fn.showMyTaskById = function (options) { // TODO: why??? // 26072022
         showMyTaskByIdSettings = $.extend({
@@ -558,7 +646,7 @@ console.log("geo_chart_jq.js");
             $('.videme_tile_loading').addClass('hidden');
         }
     }
-    $.fn.itemsMyVideosScrollV3 = function (options) { // 25072022
+    $.fn.itemsMyVideosScrollV3 = function (options) { // 25072022 // TODO: remove
         console.log("$.fn.itemsMyVideosScrollV3 -----> ok");
         itemsMyVideosScrollV3Settings = $.extend({
             limit: 16,
@@ -583,9 +671,10 @@ console.log("geo_chart_jq.js");
         var id_list_group = 'list-group_' + Math.floor(Math.random() * 100);
         //tempObject.html("<ul class='list-group' id='" + id_list_group + "'></ul>");
         //tempObject.append("<ul class='list-group' id='" + id_list_group + "'></ul><i class=\"videme_tile_loading fa fa-circle-o-notch fa-spin hidden\"></i>");
+        //$.getJSON("https://api.vide.me/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
 
         videmeUI.doGetJSONTileV3(emptyItemsData,
-            "/v2/items/my/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
+            "/upload/getmytask/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
             id_list_group,
             //'videme-v3-my-item-url',
             'showmulti',

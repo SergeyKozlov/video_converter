@@ -55,8 +55,8 @@ $log->pgSetTask([
     "task_id" => $memcachedSetKey['value'],
     "task_type" => "fileUploadVideoPre",
     "task_status" => "ready",
-    //'owner_id' => $user_id
-    'owner_id' => ''
+    'owner_id' => $user_id
+    //'owner_id' => ''
 ]);
 //    }
 //print_r($memcachedSetKey);

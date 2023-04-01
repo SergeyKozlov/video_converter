@@ -50,12 +50,14 @@ if (empty($user_id)) {
 
 //$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);
 $memcachedSetKey['key'] = $welcome->trueRandom();
-$memcachedSetKey['value'] = $welcome->trueRandom();
+//$memcachedSetKey['value'] = $welcome->trueRandom();
+$memcachedSetKey['value'] = $welcome->getHashClientIp();
 //echo "\r\n<hr>pgUserNew _SERVER['HTTP_X_FORWARDED_FOR'] 1<br>";
 //print_r($_SERVER['HTTP_X_FORWARDED_FOR']);
 //echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";
 //print_r(['key' => $pgUserNew['userinvite'],
 //    'value' => $pgUserNew['user_email']]);
+print_r($memcachedSetKey);
 $welcome->memcachedSetKey($memcachedSetKey);
 //if ($user_id == 'e185775fc4f5') { // aida
 setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/");
