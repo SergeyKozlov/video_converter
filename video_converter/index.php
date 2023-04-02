@@ -37,30 +37,28 @@ $host = $_ENV['redis_url'];
 $redis = new Predis\Client($_ENV['redis_url']); //16012023*/
 
 // TODO: add Redis cookie
-/* $user_id = $welcome->CookieToUserId();
+ $user_id = $welcome->CookieToUserId();
 //echo "user_id ";
 //print_r($user_id);
 //if (empty($user_id)) exit;
 if (empty($user_id)) {
-    $log->toFile(['service' => 'file_upload', 'type' => 'error', 'text' => 'upload_init error: HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
-    header('Location: https://www.vide.me/web/enter/');
-    exit;
-}*/
-
-
 //$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);
-$memcachedSetKey['key'] = $welcome->trueRandom();
+    $memcachedSetKey['key'] = $welcome->trueRandom();
 //$memcachedSetKey['value'] = $welcome->trueRandom();
-$memcachedSetKey['value'] = $welcome->getHashClientIp();
+    $memcachedSetKey['value'] = substr($welcome->getHashClientIp(),0, 12);
 //echo "\r\n<hr>pgUserNew _SERVER['HTTP_X_FORWARDED_FOR'] 1<br>";
 //print_r($_SERVER['HTTP_X_FORWARDED_FOR']);
 //echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";
 //print_r(['key' => $pgUserNew['userinvite'],
 //    'value' => $pgUserNew['user_email']]);
-print_r($memcachedSetKey);
-$welcome->memcachedSetKey($memcachedSetKey);
+    print_r($memcachedSetKey);
+    $welcome->memcachedSetKey($memcachedSetKey);
 //if ($user_id == 'e185775fc4f5') { // aida
-setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/");
+    setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/");
+}
+
+
+
 
 $log->toFile(['service' => 'file_upload', 'type' => '', 'text' => 'upload_init : ' . $memcachedSetKey['value'] . ' HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
 
