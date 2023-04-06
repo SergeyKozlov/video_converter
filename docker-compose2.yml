@@ -1,0 +1,46 @@
+     nginx:    
+      build: ./nginx/  
+      container_name: nginx-container  
+      ports:  
+       - 3070:80
+      links:  
+       - php  
+      volumes_from:  
+       - app-data  
+
+     php:    
+      build: ./php/  
+      container_name: php-container  
+      expose:  
+       - 9000  
+      #links:  
+      # - mysql  
+      volumes_from:  
+       - app-data  
+
+     app-data:    
+      image: php:7.0-fpm  
+      container_name: app-data-container  
+      volumes:  
+       - ./www/html/:/var/www/html/  
+      command: "true" 
+
+     #===============#
+     # composer.test #
+     #===============#
+     composer.test:
+       image: composer/composer
+       #networks:
+       #  - test_network
+       ports:
+         - "9001:9000"
+       volumes:
+         # - "./composer:/var/www/"
+         # work- "./composer:/composer"
+         #- "./:/"
+         - "./:/var/www/"
+         #- "./:/vendor"
+       container_name: composer.test
+       # workworking_dir: /composer
+       working_dir: /
+       command: install

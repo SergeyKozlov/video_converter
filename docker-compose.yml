@@ -1,46 +1,115 @@
-     nginx:    
-      build: ./nginx/  
-      container_name: nginx-container  
-      ports:  
-       - 3070:80
-      links:  
-       - php  
-      volumes_from:  
-       - app-data  
+version: '3.9'
+services:
+  nginx:
+    #image: nginx:alpine
+    build: ./nginx/
+    container_name: nginx-container
+    #!working_dir: .
+    volumes:
+      ##- "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      ##- "./etc/nginx/vide.me-location.conf:/etc/nginx/vide.me-location.conf"
+      ##- "./etc/nginx/fastcgi-php.conf:/etc/nginx/snippets/fastcgi-php.conf"
+      #- "./etc/ssl:/etc/ssl"
+      #- "./web:/var/www/html"
+      #- php:/var/www/html
+      #- "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+      - asset-volume:/var/www/html
+    ports:
+      - "3030:80"
+      #- "3000:443"
+    environment:
+      - NGINX_HOST=${NGINX_HOST}
+    #command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    restart: always
+    env_file: .env
+      #volumes:
+      #- "${APP_HOST_DIR}:/var/www/html:ro"
+      #- "dbdata:/var/www/html"
+      #./:/your_path/
+      #- .:/myapp-web-api
+    #- asset-volume:/var/www/html
+    links:
+      - php
+    depends_on:
+      - php
+    configs:
+      - source: default.conf
+        target: /etc/nginx/conf.d/default.conf
+        #uid: "103"
+        #gid: "103"
+        #mode: 0440
+      - source: fastcgi-php.conf
+        target: /etc/nginx/fastcgi-php.conf
+      - source: vide.me-location.conf
+        target: /etc/nginx/vide.me-location.conf
+    #deploy:
+    #    replicas: 1
+    #    placement:
+    #        constraints:
+    #            - node.labels.node_no == 4
 
-     php:    
-      build: ./php/  
-      container_name: php-container  
-      expose:  
-       - 9000  
-      #links:  
-      # - mysql  
-      volumes_from:  
-       - app-data  
+  php:
+    #image: sergeykozlov/test_docker:x64
+    #container_name: phpfpm
+    build: ./php/
+    container_name: php-container
+    expose:
+      - 9000
+    restart: always
+    env_file: .env
+    volumes:
+      #  - "${APP_HOST_DIR}:/var/www/html:ro"
+      - asset-volume:/var/www/html
+    configs:
+      - source: php.ini
+        target: /usr/local/etc/php/php.ini
+      #ports:
+      #  - "3030:3030"
+      #command: php -S="0.0.0.0:3030" -t="/var/www/html"
+      #volumes:
+      #  - type: volume
+      #    source: mydata
+      #    target: /:/
+      #    volume:
+      #      nocopy: true
+      #- type: bind
+      #  source: ./static
+      #  target: /opt/app/static
+    #deploy:
+    #    replicas: 1
+    #    placement:
+    #        constraints:
+    #            - node.labels.node_no == 3
+  composer.test:
+    image: composer/composer
+      #networks:
+      #  - test_network
+    ports:
+      - "9001:9000"
+    volumes:
+          # - "./composer:/var/www/"
+          # work- "./composer:/composer"
+          #- "./:/"
+      #- "./:/var/www/"
+      - asset-volume:/var/www/html
+       #- "./:/vendor"
+    container_name: composer.test
+      # workworking_dir: /composer
+    working_dir: /
+    command: install
+volumes:
+  #mydata:
+  #dbdata:
+  asset-volume:
 
-     app-data:    
-      image: php:7.0-fpm  
-      container_name: app-data-container  
-      volumes:  
-       - ./www/html/:/var/www/html/  
-      command: "true" 
-
-     #===============#
-     # composer.test #
-     #===============#
-     composer.test:
-       image: composer/composer
-       #networks:
-       #  - test_network
-       ports:
-         - "9001:9000"
-       volumes:
-         # - "./composer:/var/www/"
-         # work- "./composer:/composer"
-         #- "./:/"
-         - "./:/var/www/"
-         #- "./:/vendor"
-       container_name: composer.test
-       # workworking_dir: /composer
-       working_dir: /
-       command: install
+#configs:
+#  default.conf:
+#    file: ./etc/nginx/default.conf
+#  #my_other_config:
+#  #  external: true
+#  fastcgi-php.conf:
+#    file: ./etc/nginx/fastcgi-php.conf
+#  vide.me-location.conf:
+#    file: ./etc/nginx/vide.me-location.conf
+#  php.ini:
+#    file: ./etc/php/php.ini
