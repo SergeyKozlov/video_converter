@@ -1,0 +1,6 @@
+{
+  "require": {
+    "vide.me/datacraft": "dev-master",
+    "vide.me/ffmpegconversion": "dev-master"
+  }
+}
