@@ -6,6 +6,11 @@
  * Time: 15:46
  */
 
+namespace upload;
+use FileSteward;
+use ImageSteward;
+use NAD;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/model/FileSteward.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/model/ImageSteward.php');

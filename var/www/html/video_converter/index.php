@@ -6,7 +6,8 @@
  * Time: 1:34
  */
 
-require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+//require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
+require('/var/www/vendor/autoload.php');
 
 //use VideMe\Datacraft\TM;
 use VideMe\Datacraft\nad;

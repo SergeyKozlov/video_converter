@@ -6,6 +6,8 @@
  * Time: 23:23
  */
 
+use upload\php\Uploader;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
 //include_once($_SERVER['DOCUMENT_ROOT'] . '/pas/html/index.php');
 //include_once($_SERVER['DOCUMENT_ROOT'] . '/sendmail/sendmail.php');

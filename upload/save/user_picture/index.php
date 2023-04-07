@@ -7,6 +7,8 @@
  */
 
 //exit('ok');
+use upload\videUpload;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/upload/videUpload.php');
 
