@@ -5,9 +5,10 @@
  * Date: 24.03.19
  * Time: 1:34
  */
-
+//exit('video_converter');
 //require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
-require('/var/www/vendor/autoload.php');
+//require('/var/www/vendor/autoload.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
 
 //use VideMe\Datacraft\TM;
 use VideMe\Datacraft\nad;
@@ -55,7 +56,7 @@ if (empty($user_id)) {
     print_r($memcachedSetKey);
     $welcome->memcachedSetKey($memcachedSetKey);
 //if ($user_id == 'e185775fc4f5') { // aida
-    setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/");
+    setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/", false);
 }
 
 

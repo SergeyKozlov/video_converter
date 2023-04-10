@@ -6,7 +6,7 @@
  * Time: 1:34
  */
 
-require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
 
 //use VideMe\Datacraft\TM;
 use VideMe\Datacraft\nad;
@@ -24,8 +24,11 @@ use VideMe\Datacraft\model\PG_elaboration;
 $log = new LogConversion();
 $welcome = new NAD();
 
+error_reporting(0); // Turn off error reporting
+//error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
+
 //error_reporting(0); // Turn off error reporting
-error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
+//error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 // TODO: add Redis cookie
  $user_id = $welcome->CookieToUserId();
 //echo "user_id ";

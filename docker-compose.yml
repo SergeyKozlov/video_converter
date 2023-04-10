@@ -15,7 +15,8 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www/html
     volumes:
-      - ./var/www/html:/var/www/html
+      # work - ./var/www/html:/var/www/html
+      - ./var/www:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
@@ -68,7 +69,8 @@ services:
       #- ./etc/nginx/vide.me-location.conf:/etc/nginx/conf.d/vide.me-location.conf
       #- ./:/var/www/html
       #- ./var/www/html:/var/www/html
-      - ./var/www/html:/var/www/html
+      # work - ./var/www/html:/var/www/html
+      - ./var/www:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "3070:80"
@@ -106,7 +108,7 @@ services:
     networks:
       - app-network
 
-  composer.test:
+  composer:
     image: composer/composer
       #networks:
     #  - test_network
@@ -120,7 +122,7 @@ services:
      # - asset-volume:/var/www/html
       #- "./:/vendor"
       - ./var/www:/var/www
-    container_name: composer.test
+    container_name: composer
     # workworking_dir: /composer
     #working_dir: /
     working_dir: /var/www
