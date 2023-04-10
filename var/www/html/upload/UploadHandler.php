@@ -47,7 +47,7 @@ class UploadHandler
 
     public function __construct($options = null, $initialize = true, $error_messages = null)
     {
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
+        //include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
         $log = new log();
         $log->toFile(['service' => 'file_upload', 'type' => '', 'text' => 'upload_init __construct : HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
 
@@ -66,7 +66,8 @@ class UploadHandler
             //'script_url' =>  $this->get_full_url() . "/", // <===
             //==='upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
             //'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')) . $welcome->nadtemp, // <===
-            'upload_dir' => $welcome->nadtemp, // <===
+            //'upload_dir' => $welcome->nadtemp, // <===
+            'upload_dir' => $welcome->ge, // <===
             //'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')) . "/var/www/html/upload/files/", // <===
             //==='upload_url' => $this->get_full_url().'/files/',
             'upload_url' => $this->get_full_url() . '/v?m=',

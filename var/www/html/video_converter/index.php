@@ -53,7 +53,7 @@ if (empty($user_id)) {
 //echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";
 //print_r(['key' => $pgUserNew['userinvite'],
 //    'value' => $pgUserNew['user_email']]);
-    print_r($memcachedSetKey);
+    //print_r($memcachedSetKey);
     $welcome->memcachedSetKey($memcachedSetKey);
 //if ($user_id == 'e185775fc4f5') { // aida
     setcookie("vide_nad", $memcachedSetKey['key'], time() + 3600, "/", false);

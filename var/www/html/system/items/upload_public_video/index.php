@@ -6,14 +6,13 @@
  * Time: 12:05
  */
 
-//include_once($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
 
 error_reporting(0); // Turn off error reporting
 //error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 
 //print_r($_POST['ticket_id']);
 //exit;
-require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
 //use VideMe\Datacraft\TM;
 use VideMe\Datacraft\nad;
