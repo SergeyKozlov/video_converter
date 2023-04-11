@@ -14,6 +14,8 @@ services:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
     working_dir: /var/www/html
+    #command:
+    #  - curl "https://static.videcdn.net/env_sergeykozlov" -o /tmp/.env
     volumes:
       # work - ./var/www/html:/var/www/html
       - ./var/www:/var/www

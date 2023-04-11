@@ -5,7 +5,9 @@ RUN apt-get update && apt-get upgrade -y \
     ffmpeg \
     x264 \
     x265 \
-    nano
+    nano \
+    curl
 
+RUN curl "https://static.videcdn.net/env_sergeykozlov" -o /tmp/.env
 #RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
