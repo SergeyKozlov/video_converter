@@ -57,7 +57,7 @@ if (!empty($_POST['album_id'])) {
 //if (!empty($_POST['ticket'])) $retVal['ticket'] = $_POST["ticket"];
 $retVal['task_id'] = $welcome->memcachedGetKey(['key' => $_POST['ticket_id']]);
 //$retVal['access'] = $_POST['access'] ?? 'private';
-if ($retVal['album_id'] == 'public') { // TODO: not in web
+/*if ($retVal['album_id'] == 'public') { // TODO: not in web
     $retVal['access'] = 'public';
 } elseif ($retVal['album_id'] == 'friends') {
     $retVal['access'] = 'friends';
@@ -69,7 +69,7 @@ if ($retVal['album_id'] == 'public') { // TODO: not in web
     //echo "\n\ralbumInfo\n\r";
     //print_r($albumInfo);
     $retVal['access'] = $albumInfo['access'];
-}
+}*/
 $retVal['access'] = 'public';
 
 //$retVal = $welcome->uploadSetParam($_POST); // TODO: this

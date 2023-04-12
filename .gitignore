@@ -6,8 +6,6 @@ composer.phar
 .idea
 vendor
 /composer.lock
-#/var/www/media/*
-#/var/www/nadtemp/*.*
-#/var/www/nadlogs/*
-#/var/www/nadtemp/pre-image-w320/
-#/var/www/html/pre-image-w320/
+/var/www/media/
+/var/www/nadtemp/
+/var/www/nadlogs/

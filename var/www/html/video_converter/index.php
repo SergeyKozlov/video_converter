@@ -48,6 +48,7 @@ if (empty($user_id)) {
     $memcachedSetKey['key'] = $welcome->trueRandom();
 //$memcachedSetKey['value'] = $welcome->trueRandom();
     $memcachedSetKey['value'] = substr($welcome->getHashClientIp(),0, 12);
+    $user_id = substr($welcome->getHashClientIp(),0, 12);
 //echo "\r\n<hr>pgUserNew _SERVER['HTTP_X_FORWARDED_FOR'] 1<br>";
 //print_r($_SERVER['HTTP_X_FORWARDED_FOR']);
 //echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";
@@ -62,7 +63,7 @@ if (empty($user_id)) {
 
 
 
-$log->toFile(['service' => 'file_upload', 'type' => '', 'text' => 'upload_init : ' . $memcachedSetKey['value'] . ' HTTP_X_FORWARDED_FOR ' . $_SERVER['HTTP_X_FORWARDED_FOR']]);
+$log->toFile(['service' => 'page_open', 'type' => 'success', 'text' => 'user_id : ' . $user_id . ' HTTP_X_FORWARDED_FOR ' . $welcome->getHashClientIp()]);
 
 $html = <<<XYZ
 <!DOCTYPE html>
