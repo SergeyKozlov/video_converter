@@ -128,7 +128,8 @@ services:
     # workworking_dir: /composer
     #working_dir: /
     working_dir: /var/www
-    command: install
+    #command: install
+    command: update
 volumes:
   #mydata:
   #dbdata:
