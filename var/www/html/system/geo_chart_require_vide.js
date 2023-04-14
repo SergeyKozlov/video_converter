@@ -48,7 +48,7 @@ requirejs.config({
         'image-picker': {
             deps: ['jquery']
         },
-        deps:["jquery", 'moment', 'geo_chart_jq']
+        deps:["jquery", 'moment', 'geo_chart_jq', 'bootstrap.bundle.min']
     }
 });
 
