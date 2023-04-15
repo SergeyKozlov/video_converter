@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: sergey
+ * Date: 16.12.17
+ * Time: 1:02
+ */
+
+require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
+
+//use VideMe\Datacraft\TM;
+use VideMe\Datacraft\nad;
+
+//use VideMe\Datacraft\log\log;
+use VideMe\Ffmpegconversion\LogConversion;
+use VideMe\Ffmpegconversion\PG_ffmpeg;
+use VideMe\Ffmpegconversion\NADFFMpeg;
+//use VideMe\Datacraft\model\PostgreSQL;
+//use VideMe\Datacraft\index;
+
+error_reporting(0); // Turn off error reporting
+//error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
+
+$welcome = new NADFFMpeg();
+$log = new LogConversion();
+
+//error_reporting(0); // Turn off error reporting
+//error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
+
+$fileRequest['owner_id'] = $welcome->CookieToUserId();
+$fileRequest['offset'] = $welcome->setOffset();
+$fileRequest['limit'] = $welcome->setLimit();
+//exit;
+//echo "userId: " . $fileRequest['select_to_user_id'];
+if (!empty($fileRequest['owner_id'])) {
+    $welcome->outputDDBData($welcome->pgShowMyItems($fileRequest));
+} else {
+    header("HTTP/1.0 404 Not Found");
+}

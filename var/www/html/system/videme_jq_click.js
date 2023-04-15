@@ -101,3 +101,50 @@ $(document).on('click', '#videme_upload_video_image', function (event){
         gotoLogin();
     }*/
 });
+
+$(document).on('click', '.for_action_video', function (event){
+    var $this = $(this);
+    var item_data = {};
+    item_data.item_id = $this.attr('item_id');
+    //event.preventDefault();
+    //if ($.cookie('vide_nad')) {
+ //       require(['videme_upload'], function(videme_upload) {
+ //           videme_upload.uploadItint();
+ //       });
+        //=== $('#modal-videme_upload_video_image').modal('show');
+        //$('#upload_type').val('upload_image');
+        //===$('#nad').val($.cookie('vide_nad'));
+        //$('#access').val('public');
+        //setUploadModal();
+    /*} else {
+        //$('#modal-signin').modal('show');
+        //$('#feedback').val(window.location.href);
+        gotoLogin();
+    }*/
+    var options = {};
+    var options = {
+        "poster": '/media/' + item_data.item_id + '.jpg',
+        "preload": "auto",
+        "autoplay": true
+    };
+    require(['video.js'], function(videojs) {
+
+    var player = videojs('action_video', options, function onPlayerReady() {
+        var video_player = this;
+        videojs.log('Your player is ready!');
+        video_player.src({
+            type: "application/x-mpegURL",
+            //src: 'https://s3.amazonaws.com/video.vide.me/' + value.item_id + '.m3u8', // TODO: add message_id
+            src: '/media/' + item_data.item_id + '.m3u8', // TODO: add message_id
+        });
+        // In this context, `this` is the player that was created by Video.js.
+        this.play();
+
+        // How about an event listener?
+        this.on('ended', function() {
+            videojs.log('Awww...over so soon?!');
+        });
+    });
+
+    });
+});

@@ -1,13 +1,21 @@
 <?php
 
-include_once ($_SERVER['DOCUMENT_ROOT'] . '/nad/index.php');
-include_once ($_SERVER['DOCUMENT_ROOT'] . '/system/log/log.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php');
+
+//use VideMe\Datacraft\TM;
+use VideMe\Datacraft\nad;
+
+//use VideMe\Datacraft\log\log;
+use VideMe\Datacraft\model\PG_elaboration;
+//use VideMe\Datacraft\model\PostgreSQL;
+use VideMe\Ffmpegconversion\FfmpegConv;
+use VideMe\Ffmpegconversion\LogConversion;
 
 //error_reporting(0); // Turn off error reporting
 error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
 
 $welcome = new NAD();
-$log = new log();
+$log = new LogConversion();
 //$userId = $welcome->CookieToUserId();
 
 if (!empty($_REQUEST['task_id'])) {

@@ -208,87 +208,35 @@ console.log("geo_chart_jq.js");
             showcaseMyTask: "#videme-my-task"
         }, options);
         if ($(this).length) {
-            //console.log("$.fn.showMyTask $(this) -----> yes " + $(this).length);
+            console.log("$.fn.showMyTaskActiveOnly $(this) -----> yes " + $(this).length);
             var tempObject = $(this);
         } else {
-            //console.log("$.fn.showMyTask $(this) -----> nooo! " + $(this).length);
+            console.log("$.fn.showMyTaskActiveOnly $(this) -----> nooo! " + $(this).length);
             var tempObject = $(showMyTaskActiveOnlySettings.showcaseMyTask);
         }
-        if ($.cookie('videme_last_upload')) {
+        //if ($.cookie('videme_last_upload')) {
+        //tempObject.html(VidemeProgress);
+        var li = 1;
+        var win = $(window);
+        var getItemOpt = [];
+        var offset = 0;
+        //var limit = 4;
+        var limit = showMyTaskActiveOnlySettings.limit;
+        //var itemsData = true;
+        var id_list_group = 'list-group_' + Math.floor(Math.random() * 100);
+        //tempObject.html("<ul class='list-group' id='" + id_list_group + "'></ul>");
+        //tempObject.append("<ul class='list-group' id='" + id_list_group + "'></ul><i class=\"videme_tile_loading fa fa-circle-o-notch fa-spin hidden\"></i>");
+        //$.getJSON("https://api.vide.me/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
 
-            $.getJSON("https://api.vide.me/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
-                function (data) {
-                    //console.log("$.fn.showMyTask -----> typeof " + typeof data);
-                    if (data) {
-                        /*var htmlResult = [];
-                        var rowClass;
-                        $.each(data, function (key, value) {
-                            //console.log("showMyTask value.value.type -----> " + JSON.stringify(value.value.type));
-                            //console.log("showMyTask value.value.status -----> " + JSON.stringify(value.value.status));
-                            //switch (value.value.type) {
-                            switch (value.task_status) {
-                                case "awaiting":
-                                    rowClass = "active";
-                                    break;
-                                case "success":
-                                    rowClass = "success";
-                                    break;
-                                case "error":
-                                    rowClass = "danger";
-                                    break;
-                                default:
-                                    rowClass = "";
-                            }
-                            htmlResult.push("\
-                        <tr class=\"" + rowClass + "\">\
-                            <td>" + value['created_at'] + "</td>\
-                            <td>" + value['task_status'] + "</td>\
-                            <!--<td>" + value['file_size_start'] + "</td>\
-                            <td>" + value['file_size_done'] + "</td>\
-                            <td>" + value['file'] + "</td>-->\
-                            <td>" + value['title'] + "</td>\
-                            <td>" + value['content'] + "</td>\
-                            <td>" + sec2str(value['video_duration']) + "</td>\
-                        </tr>")
-                        });*/
-                        //console.log("showMyTask value -----> html" + "<table>" + htmlResult.join("") + "</table>");
-                        //console.log('showMyTask data.0 --->', JSON.stringify(data[0]));
+        videmeUI.doGetJSONTileV3(emptyItemsData,
+            "/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
+            id_list_group,
+            //'videme-v3-my-item-url',
+            'showmulti',
+            offset,
+            tempObject);
+        offset = offset + limit;
 
-                        //showLastTask(data[0]);
-                        var db = (
-                            showTileTasksActiveOnly(parseMyTaskForDoorbellSign(data))
-                        );
-                        /*tempObject.html("<table class=\"table\" >\
-                                    <tr class=\"\">\
-                            <td>created_at</td>\
-                            <td>status</td>\
-                            <!--<td>fileSizeStart</td>\
-                            <td>fileSizeDone</td>\
-                            <td>file</td>-->\
-                            <td>subject</td>\
-                            <td>message</td>\
-                            <td>videoDuration</td>\
-                        </tr>" + htmlResult.join("") + "</table> " +
-                            db);*/
-
-                        tempObject.html(db);
-
-                        //});
-                    } else {
-                        //console.log("$.fn.showMyTask data -----> no");
-                        tempObject.html("");
-                    }
-                })
-                .done(function (data) {
-                })
-                .fail(function (data) {
-                    tempObject.html(showError(data));
-                })
-                .always(function () {
-                });
-        } else {
-            //console.log("$.fn.showMyTaskActiveOnly no cookie -----> ");
-        }
     };
 
     $.fn.showMyTaskById = function (options) { // TODO: why??? // 26072022
@@ -620,7 +568,9 @@ console.log("geo_chart_jq.js");
                         //tempObject.html(showTileMultiple(parseDataArrayToObject(data), tempObject, "shownext"));
                         //===showTileMultiple(parseDataArrayToObject(data), tempObject, "shownext");
                         //showTileV3(parseDataArrayToObject(data), tempObject, classM, offset);
-                        showTileTestV4(parseDataArrayToObject(data), tempObject, classM, offset);
+//                        showTileTestV4(parseDataArrayToObject(data), tempObject, classM, offset);
+                        showTileTestV4(tempObject, data);
+//                        tempObject.html(itemCardShow(data));
                         //$.fn.showcaseVideoTextButton(paddingButtonMySpring(data[0]));
                     } else {
                         console.log("$.fn.doGetJSONTileV3 data -----> no");
@@ -653,14 +603,14 @@ console.log("geo_chart_jq.js");
             showcaseVideo: "#videme-tile-v3"
         }, options);
         if ($(this).length) {
-            //console.log("$.fn.fileInbox $(this) -----> yes " + $(this).length);
+            console.log("$.fn.fileInbox $(this) -----> yes " + $(this).length);
             var tempObject = $(this);
         } else {
-            //console.log("$.fn.fileInbox $(this) -----> nooo! " + $(this).length);
+            console.log("$.fn.fileInbox $(this) -----> nooo! " + $(this).length);
             var tempObject = $(itemsMyVideosScrollV3Settings.showcaseVideo);
         }
         console.log("$.fn.itemsMyVideosScrollV3 tempObject -----> " + tempObject.length);
-        //tempObject.html(VidemeProgress);
+        tempObject.html(VidemeProgress);
         var li = 1;
         var win = $(window);
         var getItemOpt = [];
@@ -674,7 +624,7 @@ console.log("geo_chart_jq.js");
         //$.getJSON("https://api.vide.me/upload/getmytask/?limit=" + showMyTaskActiveOnlySettings.limit + "&videmecallback=?",
 
         videmeUI.doGetJSONTileV3(emptyItemsData,
-            "/upload/getmytask/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
+            "/system/items/get_my_items/?offset=" + offset + "&limit=" + limit + "&videmecallback=?",
             id_list_group,
             //'videme-v3-my-item-url',
             'showmulti',
@@ -702,69 +652,20 @@ console.log("geo_chart_jq.js");
             }
         }*/
     };
+    function showTileTestV4(tempObject, data) { // 26072022
+        console.log("showTileTestV4 data -----> " + JSON.stringify(data));
+
+        var html = [];
+        //var courent_id = offset;
+        $.each(data, function (key, value) {
+            //console.log("showTileTestV4 each value -----> " + JSON.stringify(value));
+            html.push(itemCardShow(value));
+
+        });
+        tempObject.html(html)
+        //videoThumbnail();
+    }
 }
 (jQuery));
 
 
-(function (d) {
-    var k = {
-        seconds: 10,
-        color: "rgba(255, 255, 255, 0.8)",
-        height: null,
-        width: null
-    }, e = 3 * Math.PI / 2, g = Math.PI / 180, f = function (b, a, c) {
-        null === a.width && (a.width = b.width());
-        null === a.height && (a.height = b.height());
-        this.settings = a;
-        this.jquery_object = b;
-        this.interval_id = null;
-        this.current_value = 360;
-        this.initial_time = new Date;
-        this.accrued_time = 0;
-        this.callback = c;
-        this.is_paused = !0;
-        this.is_reversed = "undefined" != typeof a.is_reversed ? a.is_reversed : !1;
-        this.jquery_object.html('<canvas class="pie_timer" width="' + a.width +
-            '" height="' + a.height + '"></canvas>');
-        this.canvas = this.jquery_object.children(".pie_timer")[0]
-    };
-    f.prototype = {
-        start: function () {
-            this.is_paused && (this.initial_time = new Date - this.accrued_time, 0 >= this.current_value && (this.current_value = 360), this.interval_id = setInterval(d.proxy(this.run_timer, this), 40), this.is_paused = !1)
-        }, pause: function () {
-            this.is_paused || (this.accrued_time = new Date - this.initial_time, clearInterval(this.interval_id), this.is_paused = !0)
-        }, run_timer: function () {
-            if (this.canvas.getContext) if (this.elapsed_time =
-                (new Date - this.initial_time) / 1E3, this.current_value = 360 * Math.max(0, this.settings.seconds - this.elapsed_time) / this.settings.seconds, 0 >= this.current_value) clearInterval(this.interval_id), this.canvas.width = this.settings.width, d.isFunction(this.callback) && this.callback.call(), this.is_paused = !0; else {
-                this.canvas.width = this.settings.width;
-                var b = this.canvas.getContext("2d"), a = [this.canvas.width, this.canvas.height],
-                    c = Math.min(a[0], a[1]) / 2, a = [a[0] / 2, a[1] / 2], h = this.is_reversed;
-                b.beginPath();
-                b.moveTo(a[0], a[1]);
-                b.arc(a[0], a[1], c, h ? e - (360 - this.current_value) * g : e - this.current_value * g, e, h);
-                b.closePath();
-                b.fillStyle = this.settings.color;
-                b.fill()
-            }
-        }
-    };
-    var l = function (b, a) {
-        var c = d.extend({}, k, b);
-        return this.each(function () {
-            var b = d(this), e = new f(b, c, a);
-            b.data("pie_timer", e)
-        })
-    }, m = function (b) {
-        b in f.prototype || d.error("Method " + b + " does not exist on jQuery.pietimer");
-        var a = Array.prototype.slice.call(arguments, 1);
-        return this.each(function () {
-            var c = d(this).data("pie_timer");
-            if (!c) return !0;
-            c[b].apply(c, a)
-        })
-    };
-    d.fn.pietimer =
-        function (b) {
-            return "object" === typeof b || !b ? l.apply(this, arguments) : m.apply(this, arguments)
-        }
-})(jQuery);

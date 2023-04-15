@@ -22,11 +22,13 @@ use VideMe\Datacraft\model\PG_elaboration;
 //use Predis;
 //use Predis\Client;
 //use Dotenv;
+use \VideMe\Ffmpegconversion\PsqlFfmpeg;
 
 //$tm = new VideMe\Datacraft\TM();
 //$tm = new TM();
 $log = new log();
 $welcome = new NAD();
+$pg = new PsqlFfmpeg();
 
 //error_reporting(0); // Turn off error reporting
 error_reporting(E_ALL ^ E_DEPRECATED); // Report all errors
@@ -42,8 +44,14 @@ $redis = new Predis\Client($_ENV['redis_url']); //16012023*/
  $user_id = $welcome->CookieToUserId();
 //echo "user_id ";
 //print_r($user_id);
-//if (empty($user_id)) exit;
-if (empty($user_id)) {
+if (!empty($user_id)) {
+
+    $res_user_id = $pg->pgOneDataByColumn([
+        'table' => $pg->table_users,
+        'find_column' => 'user_id',
+        'find_value' => $user_id]);
+    if (empty($res_user_id)) $pg->pgAddData($pg->table_users, ['user_id' => $user_id]);
+} else {
 //$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);
     $memcachedSetKey['key'] = $welcome->trueRandom();
 //$memcachedSetKey['value'] = $welcome->trueRandom();
@@ -592,10 +600,15 @@ $html = <<<XYZ
 
                 <div class="videme-tile-my-tasks"></div>
                 <script type="text/javascript">
+                    console.log("pietimer -----> start");
+                
                     //require(["jquery", "videme_jq"], function( $ ) {
-                    /*require(["jquery", 'geo_chart_jq'], function( $ ) {
+                    require(["jquery", 'geo_chart_jq'], function( $ ) {
+                    console.log("pietimer -----> start require ");
 
                         $(document).ready(function () {
+                    console.log("pietimer -----> start require ready ");
+                        
                             $('#timer').pietimer({
                                     seconds: 5,
                                     color: 'rgba(102, 0, 255, 0.8)',
@@ -606,6 +619,8 @@ $html = <<<XYZ
                                     console.log("pietimer -----> location.reload();");
                                 });
                             setInterval(function () {
+                    console.log("pietimer -----> start require ready setInterval ");
+                            
                                 $.fn.showMyTaskActiveOnly({
                                     limit: 6,
                                     showcaseMyTask: ".videme-tile-my-tasks"
@@ -613,7 +628,7 @@ $html = <<<XYZ
                                 $('#timer').pietimer('start');
                             }, 5000);
                         });
-                    });*/
+                    });
                 </script>
 
             </div>
@@ -825,6 +840,7 @@ $html = <<<XYZ
         </div>
         <div class="col px-0 py-2 bg-white">
             <div class="my-2 px-2 py-2">
+                    <video class="action_video" id="action_video">Video</video>
 
                 <button id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image" class="btn btn-primary">
                     <div class="videme-nav-link-button">
@@ -833,11 +849,43 @@ $html = <<<XYZ
                     Upload video file
                 </button>
 
+<div class='container-fluid my-2 py-2 videme-tile-border'>
+                    <div class="videme-v3-tile-title" id="">Tasks</div>
+                    <div class="videme-tile" id="videme-tile-my-tasks"></div>
+                    <div class="videme-v3-tile-title" id="">Media</div>
+                    <div class='row' id='videme-tile-v3'></div>
+                </div>
+                <script type="text/javascript">
+                                require(['jquery', 'geo_chart_jq'], function( $ ) {
+                    $(document).ready(function () {
+                        $('#videme-tile-my-tasks').html(VidemeProgress);
+                                $('#timer').pietimer({
+                                    seconds: 5,
+                                    color: 'rgba(102, 0, 255, 0.8)',
+                                    height: 40,
+                                    width: 40
+                                },
+                                function () {
+                                    console.log("pietimer -----> location.reload();");
+                                });
+                            setInterval(function () {
+                                $.fn.showMyTaskActiveOnly({
+                                    limit: 6,
+                                    showcaseMyTask: "#videme-tile-my-tasks"
+                                });
+                                $('#timer').pietimer('start');
+                            }, 5000);
+                    //$('.itemscope').addClass('hidden');
+                        $('#videme-tile-v3').itemsMyVideosScrollV3({});
+                    });
+                    });
+                </script>
+
                 <div class="videme-v3-tile-title">Chart</div>
                 <div class="container-fluid">
                     <div class="row">
                     
-                    <div class="videme-tile-v3"></div>
+                    
                     
                         <p class="videme-tile">
 
@@ -861,9 +909,9 @@ $html = <<<XYZ
                     require(['jquery', 'geo_chart_jq'], function ($) {
                         $(document).ready(function () {
                         
-                        $('#videme-tile-v3').itemsMyVideosScrollV3({});
+//                        $('#videme-tile-v3').itemsMyVideosScrollV3({});
                         
-                            var item_id = getParameterByName('item');
+                            /*var item_id = getParameterByName('item');
                             //if (!item_id) item_id = getNextItem();
                             if (!item_id) getNextItem();
                             console.log('html item_id: ' + item_id);
@@ -872,13 +920,13 @@ $html = <<<XYZ
                             var w_start = getParameterByName('w_start');
                             var w_stop = getParameterByName('w_stop');
                             var m_start = getParameterByName('m_start');
-                            var m_stop = getParameterByName('m_stop');
+                            var m_stop = getParameterByName('m_stop');*/
                             //if (d_start == null ) ;
 
                             //$('.videme-media-info').showItemCard({'item_id': item});
                             //==$('.videme-media-info').showItemCardChart({'item_id': item});
                             //$('#videme-item-chart-canvas-share-place').html(chartButtonComposition(item_id));
-                            $('#chart_run').attr('item_id', item_id);
+                            /*$('#chart_run').attr('item_id', item_id);
 
                             $('#videme-chart-stump_' + item_id).attr('toggled', 'false');
                             if (!d_start) {
@@ -915,7 +963,7 @@ $html = <<<XYZ
                                     $('#videme-chart-stump_' + item_id).attr('time_shift_type', 'm_stop').attr('time_shift_val', '-1');
                                 }
                             }
-                            $('.videme-item-chart-canvas-place').attr('id', 'videme-item-chart-canvas-place_' + item_id);
+                            $('.videme-item-chart-canvas-place').attr('id', 'videme-item-chart-canvas-place_' + item_id);*/
 
                             /*$('#videme-item-chart-canvas_' + item_id).showChartShareItem({
                                 showChartShareItemId: 'videme-item-chart-canvas_' + item_id,

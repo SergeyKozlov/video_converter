@@ -392,7 +392,8 @@ var studio_upload = '';
 
                     var ticket_id = $('#videme-upload-video-ticket_id').val();
                     console.log('cookieLastUploadSet ticket_id *************************************************** ', ticket_id);
-                    //==$.cookie("videme_last_upload", ticket_id, {expires: 1, path: '/', domain: 'vide.me', secure: true}); // TODO: return cookie
+                    //$.cookie("videme_last_upload", ticket_id, {expires: 1, path: '/', domain: '', secure: false}); // TODO: return cookie
+                    $.cookie("videme_last_upload", ticket_id, {expires: 1, path: '/', crossDomain: true, secure: false}); // TODO: return cookie
                     this.lastUploadGetInfo(); // NOO dobble
                 }
             },
@@ -403,9 +404,10 @@ var studio_upload = '';
                 //$.removeCookie("videme_last_upload", { path: '/' });
                 //$.cookie('videme_last_upload', '', { expires: -1, path: '/'});
                 //$.cookie("videme_last_upload", null, { path: '/' });
-                //== $.cookie("videme_last_upload", null, {expires: -1, path: '/', domain: 'vide.me', secure: true}); // TODO: return cookie
+                 //$.cookie("videme_last_upload", null, {expires: -1, path: '/', domain: '', secure: false}); // TODO: return cookie
+                 $.cookie("videme_last_upload", null, {expires: -1, path: '/', crossDomain: true, secure: false}); // TODO: return cookie
 
-                //==console.log('cookieLastUploadRemove ***************************************** videme_last_upload ' + $.cookie("videme_last_upload"));
+                console.log('cookieLastUploadRemove ***************************************** videme_last_upload ' + $.cookie("videme_last_upload"));
 
                 $('.videme_nav_badge_last_upload').empty();
                 //$('.videme-browse-media-button').attr('disabled', false); // <--------------------------- 1 upload
@@ -416,7 +418,7 @@ var studio_upload = '';
 
             lastUploadGetInfo: function () {
                 //console.log('lastUploadGetInfo *************************************************** ');
-               //== if ($.cookie('videme_last_upload')) { // TODO: return cookie
+                if ($.cookie('videme_last_upload')) { // TODO: return cookie
                     //console.log('lastUploadGetInfo videme_last_upload *************************************************** ');
                     $('#timer').pietimer({
                             seconds: 5,
@@ -429,12 +431,12 @@ var studio_upload = '';
                         });
                     setInterval(function () {
                         $.fn.showMyTaskById({
-                           // task_id: $.cookie("videme_last_upload"),
+                            task_id: $.cookie("videme_last_upload"),
                             showcaseMyTask: "#videme_last_task"
                         });
                         $('#timer').pietimer('start');
                     }, 5000);
-                //}
+                }
             },
 
             albumIdUpdate: function () {
