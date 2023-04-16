@@ -5,8 +5,8 @@ services:
     build: ./php/
     #container_name: php-container
     container_name: app
-    #expose:
-    #  - 9000
+    expose:
+      - 9000
     restart: always
     #restart: unless-stopped
     #working_dir: /var/www

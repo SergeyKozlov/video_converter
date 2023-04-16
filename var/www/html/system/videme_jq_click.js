@@ -127,10 +127,13 @@ $(document).on('click', '.for_action_video', function (event){
         "preload": "auto",
         "autoplay": true
     };
+    //$('#action_video').empty();
     require(['video.js'], function(videojs) {
 
     var player = videojs('action_video', options, function onPlayerReady() {
+        //videojs(player).dispose();
         var video_player = this;
+        //video_player.dispose();
         videojs.log('Your player is ready!');
         video_player.src({
             type: "application/x-mpegURL",

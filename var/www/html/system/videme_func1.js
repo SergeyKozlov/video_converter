@@ -217,7 +217,7 @@ function itemCardShow(itemCardShow) {
     var content = (itemCardShow.content) ? (itemCardShow.content) : ('');
     var image_icon = '';
     var progress_convert = '';
-    if (!$.isEmptyObject(itemCardShow.percentage)) {
+    if (!$.isEmptyObject(itemCardShow.task_type)) {
         /*progress_convert = '<div class="progress videme-convert-progress" style="height: .2rem; margin-top: .2rem;">' +
             '<div aria-valuemax="100" aria-valuemin="0" ' +
             'class="progress-bar progress-bar-striped progress-bar-animated" id="videme_convert_progress" ' +
@@ -265,8 +265,11 @@ function itemCardShow(itemCardShow) {
                 'role="progressbar" style="width: ' + percentage + '%" aria-valuenow="' + percentage + '"></div>' +
                 '</div>';
         }
-        image_icon = "<i class='img-thumbnail fa fa-cogs fa-2x fa-pull-left text-center align-items-center d-flex justify-content-center videme-doorbell-sign-icon'></i>";
-
+        if (itemCardShow.task_status === 'worked') {
+            image_icon = "<i class='img-thumbnail fa fa-cogs fa-2x fa-pull-left text-center align-items-center d-flex justify-content-center videme-doorbell-sign-icon'></i>";
+        } else {
+            image_icon = "<i class='img-thumbnail fa fa-clock-o fa-2x fa-pull-left text-center align-items-center d-flex justify-content-center videme-doorbell-sign-icon'></i>";
+        }
     } else {
         image_icon = '<img style="width: 150px;" src="/media/' + item_id + '.jpg" class="for_action_video img-thumbnail me-2" item_id="' + item_id + '"/>';
 

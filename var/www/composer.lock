@@ -1445,12 +1445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergeyKozlov/datacraft.git",
-                "reference": "c5b508d34d9eb94f99af37a5afc059f14c7518ef"
+                "reference": "caabfcc8413b6efab9df47fe1a4752f6d4b5fffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergeyKozlov/datacraft/zipball/c5b508d34d9eb94f99af37a5afc059f14c7518ef",
-                "reference": "c5b508d34d9eb94f99af37a5afc059f14c7518ef",
+                "url": "https://api.github.com/repos/SergeyKozlov/datacraft/zipball/caabfcc8413b6efab9df47fe1a4752f6d4b5fffc",
+                "reference": "caabfcc8413b6efab9df47fe1a4752f6d4b5fffc",
                 "shasum": ""
             },
             "require": {
@@ -1477,7 +1477,7 @@
                 "issues": "https://github.com/SergeyKozlov/datacraft/issues",
                 "source": "https://github.com/SergeyKozlov/datacraft/tree/master"
             },
-            "time": "2023-03-31T20:37:37+00:00"
+            "time": "2023-04-10T19:26:44+00:00"
         },
         {
             "name": "vide.me/ffmpegconversion",
@@ -1485,12 +1485,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergeyKozlov/FFmpegConversion.git",
-                "reference": "594e3c69882018be6b23851410439dcd035179e2"
+                "reference": "fc31aa29d9034a5bd9adb809978a446ba160b777"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergeyKozlov/FFmpegConversion/zipball/594e3c69882018be6b23851410439dcd035179e2",
-                "reference": "594e3c69882018be6b23851410439dcd035179e2",
+                "url": "https://api.github.com/repos/SergeyKozlov/FFmpegConversion/zipball/fc31aa29d9034a5bd9adb809978a446ba160b777",
+                "reference": "fc31aa29d9034a5bd9adb809978a446ba160b777",
                 "shasum": ""
             },
             "require": {
@@ -1516,7 +1516,7 @@
                 "issues": "https://github.com/SergeyKozlov/FFmpegConversion/issues",
                 "source": "https://github.com/SergeyKozlov/FFmpegConversion/tree/master"
             },
-            "time": "2023-03-28T13:31:04+00:00"
+            "time": "2023-04-15T21:45:39+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
