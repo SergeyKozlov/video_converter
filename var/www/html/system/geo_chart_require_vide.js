@@ -42,13 +42,16 @@ requirejs.config({
         'jquery.fileupload': {
             deps: ['jquery', 'jquery-ui/ui/widget' /*, 'jquery.hashtags', 'jquery.autosize'*/]
         },
+        'bootstrap.bundle.min': {
+            deps: [/*'img_cropper', 'cropperjs', 'jquery-cropper'*/]
+        },
         'videme_upload': {
             deps: ['geo_chart_jq', 'videme_func1', 'videme_jq_click', 'jquery', 'jquery.fileupload', 'jquery-ui']
         },
         'image-picker': {
             deps: ['jquery']
         },
-        deps:["jquery", 'moment', 'geo_chart_jq', 'bootstrap.bundle.min']
+        deps:["jquery", 'moment', 'geo_chart_jq', ]
     }
 });
 
