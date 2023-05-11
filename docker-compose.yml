@@ -130,10 +130,10 @@ services:
     working_dir: /var/www
     #command: install
     command: update
-  cron:
-    build: ./cron
-    networks:
-      - app-network
+#  cron:
+#    build: ./cron
+#    networks:
+#      - app-network
 volumes:
   #mydata:
   #dbdata:
