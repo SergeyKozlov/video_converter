@@ -19,7 +19,7 @@ COPY tasks-cron /etc/cron.d/tasks-cron
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/tasks-cron
 
-RUN echo "* * * * * curl nginx/video_converter/system/log/scheduler.php >> /var/log/cron.log 2>&1" >> /etc/crontab
+RUN echo "* * * * * curl nginx/system/log/scheduler.php >> /var/log/cron.log 2>&1" >> /etc/crontab
 
 # Apply cron job
 RUN crontab /etc/cron.d/tasks-cron
