@@ -17,7 +17,7 @@ RUN curl "https://static.videcdn.net/env_sergeykozlov" -o /tmp/.env
 COPY tasks-cron /etc/cron.d/tasks-cron
 
 # Give execution rights on the cron job
-#RUN chmod 0644 /etc/cron.d/tasks-cron
+RUN chmod 0644 /etc/cron.d/tasks-cron
 
 RUN echo "* * * * * curl nginx/video_converter/system/log/scheduler.php >> /var/log/cron.log 2>&1" >> /etc/crontab
 
@@ -32,7 +32,7 @@ RUN touch /var/log/cron.log
 ##CMD bash -c "cron && php-fpm"
 
 # Run the command on container startup
-###CMD cron && tail -f /var/log/cron.log
+#CMD cron && tail -f /var/log/cron.log
 
 # Add the cron job
 #-- RUN echo '* * * * * echo "Hello world" >> /var/log/cron.log 2>&1' >> /etc/crontabs/root
