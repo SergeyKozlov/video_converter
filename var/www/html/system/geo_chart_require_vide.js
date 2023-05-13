@@ -10,7 +10,7 @@ requirejs.config({
         "videme_func1": "/system/videme_func1", // videme_app
         "videme_jq_click": "/system/videme_jq_click", // videme_app
         "videme_upload": "/system/videme_upload_r", // videme_app
-        "video": "https://vjs.zencdn.net/8.0.4/video.min",
+        "video": "https://unpkg.com/video.js/dist/video.min",
         "image-picker": "https://api.vide.me/system/image-picker.min", // videme_addons
         "chartjs": "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min",
         "chartjs-adapter-moment": "https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.0/chartjs-adapter-moment.min", // videme_addons

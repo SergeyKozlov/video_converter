@@ -121,14 +121,14 @@ $(document).on('click', '.for_action_video', function (event){
         //$('#feedback').val(window.location.href);
         gotoLogin();
     }*/
-    var options = {};
+    $('#action_video').removeClass('hidden');
     var options = {
         "poster": '/media/' + item_data.item_id + '.jpg',
         "preload": "auto",
         "autoplay": true
     };
     //$('#action_video').empty();
-    require(['video.js'], function(videojs) {
+    require(['video.js', 'videojs-hls-quality-selector'], function(videojs) {
 
     var player = videojs('action_video', options, function onPlayerReady() {
         //videojs(player).dispose();
@@ -139,6 +139,9 @@ $(document).on('click', '.for_action_video', function (event){
             type: "application/x-mpegURL",
             //src: 'https://s3.amazonaws.com/video.vide.me/' + value.item_id + '.m3u8', // TODO: add message_id
             src: '/media/' + item_data.item_id + '.m3u8', // TODO: add message_id
+        });
+        video_player.hlsQualitySelector({
+            displayCurrentQuality: true,
         });
         // In this context, `this` is the player that was created by Video.js.
         this.play();

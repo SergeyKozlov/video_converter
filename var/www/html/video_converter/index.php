@@ -236,7 +236,7 @@ $html = <<<XYZ
     <link type="text/css" href="https://cdn.jsdelivr.net/jquery.jssocials/1.5.0/jssocials.css" rel="stylesheet">
     <link type="text/css" href="https://cdn.jsdelivr.net/jquery.jssocials/1.5.0/jssocials-theme-classic.css"
           rel="stylesheet">
-    <link type="text/css" href="https://vjs.zencdn.net/7.7.5/video-js.min.css" rel="stylesheet">
+    <link type="text/css" href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
     <link type="text/css" href="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.css" rel="stylesheet">
     <link type="text/css" href="https://api.vide.me/system/videme.css" rel="stylesheet">
     <script type="text/javascript" src="/system/require.js"></script>
@@ -773,74 +773,11 @@ $html = <<<XYZ
     <div class="videme-spring-row"></div>
 </div>
 <div class="container-fluid pl-5 pr-5">
-    <div class="row">
-        <div class="videme-nav-v3 d-none d-md-block pl-0 pr-2 bg-secondary2">
-            <div class="bg-white my-2 px-2 py-2">
-            </div>
+    <div class="row justify-content-center">
 
-
-            <div class="mx-2">
-                <p></p>
-            </div>
-            <div class="modal" id="modal-feedback">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <form class="" id="feedback-form" name="feedback-form" role="form" action="" method="post">
-                            <div class="modal-header">
-                                <h5 class="modal-title">On this error page</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="content1" name="content"
-                                           value="content">
-                                    <label class="form-check-label" for="content1">Obscene content</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="copyright" name="copyright"
-                                           value="copyright">
-                                    <label class="form-check-label" for="copyright">Copyright infringement</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="view" name="view"
-                                           value="view">
-                                    <label class="form-check-label" for="view">Incorrect page display</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" id="feedback-location" name="location" value="">
-                                    <label for="feedback-message">You message</label>
-                                    <textarea class="form-control" id="feedback-message" rows="3"
-                                              name="message"></textarea>
-                                </div>
-                                <div class="form-group form-check hidden" id="videme-feedback-response">
-                                    <input type="text" class="form-check-input hidden" id="response_user_id"
-                                           name="response_user_id" value="">
-                                    <input type="checkbox" class="form-check-input" id="response" name="response"
-                                           value="response">
-                                    <label class="form-check-label" for="response">I want to receive a response from
-                                        the support service</label>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                    <span class="spinner-border spinner-border-sm videme-send-feedback-spinner hidden"
-                                          role="status" aria-hidden="true"></span>
-                                <button type="submit" class="btn btn-primary" id="feedback-submit"
-                                        name="feedback-submit">
-                                    Send
-                                    <div class="videme-progress"></div>
-                                </button>
-                                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col px-0 py-2 bg-white">
+        <div class="col-md-6 col-lg-8 pl-0 pr-2 bg-white">
             <div class="my-2 px-2 py-2">
-                    <video class="action_video" id="action_video">Video</video>
+                    <video class="action_video video-js vjs-default-skin hidden" id="action_video" controls></video>
 
                 <button id="videme_upload_video_image" href="" data-bs-toggle="modal" data-bs-target="#modal-videme_upload_video_image" class="btn btn-primary">
                     <div class="videme-nav-link-button">
@@ -881,30 +818,6 @@ $html = <<<XYZ
                     });
                 </script>
 
-                <div class="videme-v3-tile-title">Chart</div>
-                <div class="container-fluid">
-                    <div class="row">
-                    
-                    
-                    
-                        <p class="videme-tile">
-
-
-                            <!--<div class="videme-media-info"></div>-->
-                            <div class="d-flex text-muted pt-3">
-                                <img style="width: 150px;" src="" class="img-thumbnail me-2" id="geo_chart_image"/>
-                                <div class="pb-3 mb-0 small lh-sm border-bottom">
-                                    <strong class="d-block text-gray-dark" id="geo_chart_title"></strong>
-                                    <div id="geo_chart_content"></div>
-                                </div>
-                            </div>
-
-
-                            <div id="videme-item-chart-canvas-share-place"></div>
-                            <textarea id="chart_result"></textarea>
-                        </div>
-                    </div>
-                </div>
                 <script type="text/javascript">
                     require(['jquery', 'geo_chart_jq'], function ($) {
                         $(document).ready(function () {
