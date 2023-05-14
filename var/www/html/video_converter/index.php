@@ -80,7 +80,7 @@ $html = <<<XYZ
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vide.me</title>
+    <title>Video converter</title>
     <meta name="description" content="Vide.me">
     <link rel="apple-touch-icon" sizes="57x57"
           href="https://ea1116048a2ffc61f8b7-d479f182e30f6e6ac2ebc5ce5ab9de7b.ssl.cf1.rackcdn.com/apple-touch-icon-57.png">
@@ -243,7 +243,7 @@ $html = <<<XYZ
     <!--<script type="text/javascript" src="https://api.vide.me/system/require_vide.js"></script>-->
     <script type="text/javascript" src="/system/geo_chart_require_vide.js"></script>
     <link type="text/css" href="https://api.vide.me/system/jquery-comments.css" rel="stylesheet">
-    <link type="text/css" href="https://api.vide.me/system/videojs.thumbnails.css" rel="stylesheet">
+    <!--<link type="text/css" href="https://api.vide.me/system/videojs.thumbnails.css" rel="stylesheet">-->
 
 
     <style type="text/css">

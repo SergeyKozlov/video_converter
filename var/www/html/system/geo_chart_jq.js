@@ -653,7 +653,7 @@ console.log("geo_chart_jq.js");
         }*/
     };
     function showTileTestV4(tempObject, data) { // 26072022
-        console.log("showTileTestV4 data -----> " + JSON.stringify(data));
+        //console.log("showTileTestV4 data -----> " + JSON.stringify(data));
 
         var html = [];
         //var courent_id = offset;

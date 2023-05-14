@@ -127,19 +127,38 @@ $(document).on('click', '.for_action_video', function (event){
         "preload": "auto",
         "autoplay": true
     };
-    //$('#action_video').empty();
-    require(['video.js', 'videojs-hls-quality-selector'], function(videojs) {
+ //   define('videme_video_player', function(videme_video_player) {
 
+    //$('#action_video').empty();
+    //require(['videojs', 'videojs-hls-quality-selector'], function(videojs) {
+    //require(['videojs', 'videojs-vtt-thumbnails', 'videojs-hls-quality-selector', 'videojs-overlay.min', 'videojs-playlist'], function(videojs) {
+    require(['video.js', 'videojs-hls-quality-selector'], function(videojs) {
+    //require(['video.js'], function(videojs) {
+    //require(['videojs'], function(videojs) {
+        //require(['jquery', 'videme_jq'], function( $ ) {
+        //require(['videme_video'], function( $ ) {
     var player = videojs('action_video', options, function onPlayerReady() {
         //videojs(player).dispose();
         var video_player = this;
+        let videmeVideoPlayerProperties = {};
+
         //video_player.dispose();
         videojs.log('Your player is ready!');
-        video_player.src({
+        /*video_player.src({
             type: "application/x-mpegURL",
             //src: 'https://s3.amazonaws.com/video.vide.me/' + value.item_id + '.m3u8', // TODO: add message_id
             src: '/media/' + item_data.item_id + '.m3u8', // TODO: add message_id
+        });*/
+        videmeVideoPlayerProperties.src = [];
+        //let src_array4 = [];
+        videmeVideoPlayerProperties.src.push({
+            type: "application/x-mpegURL",
+            src: '/media/' + item_data.item_id + '.m3u8', // TODO: add message_id
         });
+        console.log("videmeVideoPlayerProperties -----> " + JSON.stringify(videmeVideoPlayerProperties));
+
+        video_player.src(videmeVideoPlayerProperties.src);
+
         video_player.hlsQualitySelector({
             displayCurrentQuality: true,
         });
@@ -151,6 +170,10 @@ $(document).on('click', '.for_action_video', function (event){
             videojs.log('Awww...over so soon?!');
         });
     });
-
+        /*player.hlsQualitySelector({
+            displayCurrentQuality: true,
+        });*/
     });
+ //       return videme_video_player;
+//    });
 });
