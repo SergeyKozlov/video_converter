@@ -10,8 +10,12 @@ requirejs.config({
         "videme_func1": "/system/videme_func1", // videme_app
         "videme_jq_click": "/system/videme_jq_click", // videme_app
         "videme_upload": "/system/videme_upload_r", // videme_app
-        "video": "https://vjs.zencdn.net/8.0.4/video.min",
-        "image-picker": "https://api.vide.me/system/image-picker.min", // videme_addons
+        //"video": "https://unpkg.com/video.js/dist/video.min",
+        "video": "https://vjs.zencdn.net/7.7.5/video.min",
+        "videojs-hls-quality-selector": "https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.min",
+        "videojs-contrib-quality-levels":"https://cdn.jsdelivr.net/npm/videojs-contrib-quality-levels@2.1.0/dist/videojs-contrib-quality-levels.min",
+        //"videme_video": "https://static.videcdn.net/videme_video", // videme_video_player
+        "image-picker": "https://static.videcdn.net/image-picker.min", // videme_addons
         "chartjs": "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min",
         "chartjs-adapter-moment": "https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.0/chartjs-adapter-moment.min", // videme_addons
         "jquery-ui": "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min",
@@ -22,6 +26,7 @@ requirejs.config({
     },
     map: {
         '*': {
+            //"video.js": "videme_video",
             "video.js": "video",
             "chart.js": "chartjs"
         }
@@ -51,7 +56,13 @@ requirejs.config({
         'image-picker': {
             deps: ['jquery']
         },
-        deps:["jquery", 'moment', 'geo_chart_jq', ]
+        'video.js': {
+            deps: ['videojs-hls-quality-selector']
+        },
+        "videojs-hls-quality-selector":{
+            deps:["videojs-contrib-quality-levels"]
+        },
+        deps:["jquery", 'moment', 'geo_chart_jq']
     }
 });
 

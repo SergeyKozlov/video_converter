@@ -210,7 +210,7 @@ function itemCardUpdate(itemCardUpdate) {
     $('#geo_chart_content').html(itemCardUpdate.content);
 }
 function itemCardShow(itemCardShow) {
-    console.log("itemCardShow -----> itemCardShow: " + JSON.stringify(itemCardShow));
+    //console.log("itemCardShow -----> itemCardShow: " + JSON.stringify(itemCardShow));
 
     var item_id = (itemCardShow.item_id) ? (itemCardShow.item_id) : ('');
     var title = (itemCardShow.title) ? (itemCardShow.title) : ('');
@@ -225,7 +225,7 @@ function itemCardShow(itemCardShow) {
             '</div>';*/
 
         if (itemCardShow.percentage > 0) {
-            console.log("itemCardShow -----> itemCardShow.percentage: " + itemCardShow.percentage);
+            //console.log("itemCardShow -----> itemCardShow.percentage: " + itemCardShow.percentage);
 
             /*$('#videme_convert_progress')
                 .addClass('bg-success')
