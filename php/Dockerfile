@@ -15,6 +15,8 @@ RUN mkdir pre-image-w320
 
 RUN chmod 777 pre-image-w320
 
+
+
 # Copy hello-cron file to the cron.d directory
 #COPY tasks-cron /etc/cron.d/crontab
 #COPY tasks-cron /etc/cron.d/tasks-cron
