@@ -11,9 +11,9 @@ RUN apt-get update && apt-get upgrade -y \
 
 RUN curl "https://static.videcdn.net/env_sergeykozlov" -o /tmp/.env
 #RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN mkdir pre-image-w320
+#RUN mkdir pre-image-w320
 
-RUN chmod 777 pre-image-w320
+#RUN chmod 777 pre-image-w320
 
 
 
