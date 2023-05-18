@@ -20,7 +20,6 @@ RUN chmod 777 /var/www/nadtemp/pre-image-w320
 RUN chmod 777 /var/www/nadlogs
 
 
-
 # Copy hello-cron file to the cron.d directory
 #COPY tasks-cron /etc/cron.d/crontab
 #COPY tasks-cron /etc/cron.d/tasks-cron
