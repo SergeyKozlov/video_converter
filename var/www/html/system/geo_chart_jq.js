@@ -543,6 +543,7 @@ console.log("geo_chart_jq.js");
 
     function emptyItemsData(salutation, tempObject) {
         $('.videme_tile_loading').addClass('hidden');
+        $('.videme_tile_loading_text').append('Empty. Add something.');
         itemsData = false;
     }
 
