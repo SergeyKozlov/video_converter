@@ -14,11 +14,11 @@ RUN curl "https://static.videcdn.net/env_sergeykozlov" -o /tmp/.env
 #RUN mkdir pre-image-w320
 
 #RUN chmod 777 pre-image-w320
-RUN chmod 777 /var/www/media/
-RUN chmod 777 /var/www/nadtemp/
-RUN chmod 777 /var/www/nadtemp/pre-image-w320/
-RUN chmod 777 /var/www/html/pre-image-w320/
-RUN chmod 777 /var/www/nadlogs/
+RUN chmod 777 /var/www/media
+RUN chmod 777 /var/www/nadtemp
+RUN chmod 777 /var/www/nadtemp/pre-image-w320
+RUN chmod 777 /var/www/html/pre-image-w320
+RUN chmod 777 /var/www/nadlogs
 
 
 # Copy hello-cron file to the cron.d directory
