@@ -1,5 +1,5 @@
 requirejs.config({
-    'waitSeconds' : 25,
+    'waitSeconds' : 60,
     "baseUrl": "",
     "paths": {
         "app": "",

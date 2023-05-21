@@ -53,10 +53,12 @@ if (!empty($user_id)) {
     if (empty($res_user_id)) $pg->pgAddData($pg->table_users, ['user_id' => $user_id]);
 } else {
 //$memcachedSetKey['key'] = md5($_SERVER['HTTP_X_FORWARDED_FOR']);
+    //$user_id = substr($welcome->getHashClientIp(),0, 12);
+    $user_id = substr(gethostname(),0, 12);
     $memcachedSetKey['key'] = $welcome->trueRandom();
 //$memcachedSetKey['value'] = $welcome->trueRandom();
-    $memcachedSetKey['value'] = substr($welcome->getHashClientIp(),0, 12);
-    $user_id = substr($welcome->getHashClientIp(),0, 12);
+    //$memcachedSetKey['value'] = substr($welcome->getHashClientIp(),0, 12);
+    $memcachedSetKey['value'] = $user_id;
 //echo "\r\n<hr>pgUserNew _SERVER['HTTP_X_FORWARDED_FOR'] 1<br>";
 //print_r($_SERVER['HTTP_X_FORWARDED_FOR']);
 //echo "\r\n<hr>pgUserNew memcachedSetKey 1<br>";

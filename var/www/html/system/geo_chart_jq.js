@@ -3,6 +3,7 @@ console.log("geo_chart_jq.js");
 (function ($) {
 //    var authorized = false;
 
+    var itemsData = true;
 
     /***************************************************************************
      v2 get chart pop states
@@ -539,12 +540,11 @@ console.log("geo_chart_jq.js");
         tempObject.html(lastNotificationSettings.msg);
     };
 
-    var itemsData = true;
 
     function emptyItemsData(salutation, tempObject) {
         $('.videme_tile_loading').addClass('hidden');
-        $('.videme_tile_loading_text').append('Empty. Add something.');
-        itemsData = false;
+        //$('.videme_tile_loading_text').append('Empty. Add something.');
+        //itemsData = false;
     }
 
     function emptyItemsDataTrue(salutation, tempObject) {
@@ -554,9 +554,9 @@ console.log("geo_chart_jq.js");
     Thing.prototype.doGetJSONTileV3 = function (callback, url, id_list_group, classM, offset, tempObject) { // 26072022
         // Call our callback, but using our own instance as the context
         //callback.call(this, salutation);
-        $('.videme_tile_loading').removeClass('hidden');
+        //$('.videme_tile_loading').removeClass('hidden');
         var self = $(this); // using self to store $(this)
-        if (itemsData !== false) {
+        //if (itemsData !== false) {
             $.getJSON(url,
                 function (data) {
                     //console.log("Thing.prototype.doGetJSONTileV3 data -----> url " + url + ' data ' + JSON.stringify(data));
@@ -593,9 +593,9 @@ console.log("geo_chart_jq.js");
                 })
                 .always(function () {
                 });
-        } else {
-            $('.videme_tile_loading').addClass('hidden');
-        }
+        //} else {
+        //    $('.videme_tile_loading').addClass('hidden');
+        //}
     }
     $.fn.itemsMyVideosScrollV3 = function (options) { // 25072022 // TODO: remove
         console.log("$.fn.itemsMyVideosScrollV3 -----> ok");
