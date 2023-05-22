@@ -18,3 +18,6 @@ Web service.
 ### PostgreSQL
 Storing the List of Media Files and the Task Queue.
 
+### Redis
+Storage of temporary user tickets.
+
