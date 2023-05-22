@@ -21,3 +21,23 @@ Storing the List of Media Files and the Task Queue.
 ### Redis
 Storage of temporary user tickets.
 
+
+## Run in Docker
+
+git clone https://github.com/SergeyKozlov/video_converter.git
+
+cd video_converter
+
+docker-compose up -d
+
+### To update existing images with docker-compose
+docker-compose up --force-recreate --build -d
+docker image prune -f
+
+### Follow log output
+
+docker-compose logs -f
+
+### To rebuild docker container in docker-compose.yml
+
+docker-compose up --build --force-recreate --no-deps -d app
