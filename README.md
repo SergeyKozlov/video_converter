@@ -1,21 +1,23 @@
-# video_converter
+# Video converter
 
-A full-featured video file conversion service. Created on the basis of the own development of video hosting [Vide.me](https://vide.me)
-.
-
-Upload your video and converted for use.
+A full-featured video file conversion service. Created on the basis of the own development of video hosting [Vide.me](https://vide.me).
+The result of the application's work is the converted adaptive video of the HLS format.
 
 Work example
 [https://demo.sergeykozlov.ru/video_converter/](https://demo.sergeykozlov.ru/video_converter/)
 
 ![Снимок экрана от 2023-05-22 09-41-58](https://github.com/SergeyKozlov/video_converter/assets/1781376/b4f5da39-f9a3-4723-95c3-636f65d6ef42)
 
-
+Video adapts for use on any device.
+Additionally, posters and thumbnailы are created.
 
 The following technologies are used:
 
 ### PHP 8
 Maintenance of APIs, applications and web page generation.
+
+### FFMpeg
+Responsive video conversion
 
 ### Nginx
 Web service.
