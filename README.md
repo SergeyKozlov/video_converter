@@ -5,7 +5,8 @@ The result of the application's work is the converted adaptive video of the HLS 
 
 Work example
 [https://demo.sergeykozlov.ru/video_converter/](https://demo.sergeykozlov.ru/video_converter/)
-![Снимок экрана от 2023-05-22 09-41-58-2](https://github.com/SergeyKozlov/video_converter/assets/1781376/263a9627-ba62-45b8-a008-705fd91879dd)
+![Снимок экрана от 2023-05-22 09-41-58-2](https://github.com/SergeyKozlov/video_converter/assets/1781376/ffbe1243-2e65-48c6-8f18-1b3154c2b9a3)
+
 
 Video adapts for use on any device.
 Additionally, posters and thumbnailы are created.
