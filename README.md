@@ -1,5 +1,8 @@
 # video_converter
 
+A full-featured video file conversion service. Created on the basis of the own development of video hosting [Vide.me](https://vide.me)
+.
+
 Upload your video and converted for use.
 
 Work example
@@ -8,7 +11,6 @@ Work example
 ![Снимок экрана от 2023-05-22 09-41-58](https://github.com/SergeyKozlov/video_converter/assets/1781376/b4f5da39-f9a3-4723-95c3-636f65d6ef42)
 
 
-A full-featured video file conversion service. Created on the basis of the own development of video hosting Vide.me.
 
 The following technologies are used:
 
@@ -44,3 +46,11 @@ docker-compose logs -f
 ### To rebuild docker container in docker-compose.yml
 
 docker-compose up --build --force-recreate --no-deps -d app
+
+## Used frameworks
+
+### datacraft (Sergey Kozlov)
+https://github.com/SergeyKozlov/datacraft
+
+### FFmpegConversion (Sergey Kozlov)
+https://github.com/SergeyKozlov/FFmpegConversion
