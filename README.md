@@ -17,7 +17,7 @@ The following technologies are used:
 Maintenance of APIs, applications and web page generation.
 
 ### FFMpeg
-Responsive video conversion
+Responsive video conversion.
 
 ### Nginx
 Web service.
